@@ -9,8 +9,8 @@ function App() {
   const [results, setResults] = useState(null);
 
 
-  function findUserLocation(position) {
-    var latitude = position.coords.latitude, longitude = position.coords.longitude;
+  const findUserLocation = (position) => {
+    const latitude = position.coords.latitude, longitude = position.coords.longitude;
     fetch("https://api.openweathermap.org/geo/1.0/reverse?lat="+latitude+"&lon="+longitude+"&limit=5&appid=" + process.env.REACT_APP_APIKEY)
     .then(res => res.json())
     .then(
