@@ -7,6 +7,7 @@ function App() {
   const [isLoaded, setIsLoaded] = useState(false);
   const [city, setCity] = useState("New York City")
   const [results, setResults] = useState(null);
+  const [weatherType, setWeatherType] = useState("")
 
 
   const findUserLocation = (position) => {
@@ -31,28 +32,49 @@ function App() {
   }, [])
 
   useEffect(() => {
-    fetch("https://api.openweathermap.org/data/2.5/weather?q="+city+"&units=metric&appid=" + process.env.REACT_APP_APIKEY)
-    .then(res => res.json())
-    .then(
-      (result) => {
-        if (result['cod'] !== 200) {
-          setIsLoaded(false);
-        } else {
+    fetch("https://api.openweathermap.org/data/2.5/weather?q=" + city + "&units=metric&appid=" + process.env.REACT_APP_APIKEY)
+      .then(res => res.json())
+      .then(
+        (result) => {
+          if (result['cod'] !== 200) {
+            setIsLoaded(false)
+          } else {
+            setIsLoaded(true);
+            console.log(result)
+            setResults(result);
+            setWeatherType(result.weather[0].main);
+          }
+        },
+        (error) => {
           setIsLoaded(true);
-          setResults(result);
-        }
-      },
-      (error) => {
-        setIsLoaded(true);
-        setError(error);
-      }
-    )
-  }, [city])
+          setError(error);
+          setWeatherType(error);
+        })
+      }, [city])
+
+  const weather = (weatherType) => {
+    switch (weatherType) {
+      case "Clouds":
+        return "cloudy"
+      case "Clear":
+        return "clear"
+      case "Rain":
+        return "rainy"
+      case "Snow":
+        return "snowy"
+      case "Thunderstorm":
+        return "stormy"
+      case "Drizzle":
+        return "drizzly"
+      default:
+        return "haze"
+    }
+  }
 
   if (error) {
     return <div>Error: {error.message}</div>;
   } else {
-    return <>
+    return <div className={"main " + weather(weatherType)}>
       <img className="logo" src={logo} alt="MLH Prep Logo"></img>
       <div>
         <h2>Enter a city below 👇</h2>
@@ -70,7 +92,7 @@ function App() {
           </>}
         </div>
       </div>
-    </>
+    </div>
   }
 }
 
