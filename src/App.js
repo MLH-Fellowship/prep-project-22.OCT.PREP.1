@@ -32,7 +32,7 @@ function App() {
   }, [city])
 
   const weather = (weatherType) => {
-    switch(weatherType) {
+    switch (weatherType) {
       case "Clouds":
         return "cloudy"
       case "Clear":
@@ -53,7 +53,7 @@ function App() {
   if (error) {
     return <div>Error: {error.message}</div>;
   } else {
-    return <div className={weather(weatherType)}>
+    return <div className={"main " + weather(weatherType)}>
       <img className="logo" src={logo} alt="MLH Prep Logo"></img>
       <div>
         <h2>Enter a city below 👇</h2>
