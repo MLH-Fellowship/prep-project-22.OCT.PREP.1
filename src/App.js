@@ -18,8 +18,9 @@ function App() {
             setIsLoaded(false)
           } else {
             setIsLoaded(true);
+            console.log(result)
             setResults(result);
-            setWeatherType(results.weather[0].main);
+            setWeatherType(result.weather[0].main);
           }
         },
         (error) => {
@@ -30,10 +31,29 @@ function App() {
       )
   }, [city])
 
+  const weather = (weatherType) => {
+    switch(weatherType) {
+      case "Clouds":
+        return "cloudy"
+      case "Clear":
+        return "clear"
+      case "Rain":
+        return "rainy"
+      case "Snow":
+        return "snowy"
+      case "Thunderstorm":
+        return "stormy"
+      case "Drizzle":
+        return "drizzly"
+      default:
+        return "haze"
+    }
+  }
+
   if (error) {
     return <div>Error: {error.message}</div>;
   } else {
-    return <>
+    return <div className={weather(weatherType)}>
       <img className="logo" src={logo} alt="MLH Prep Logo"></img>
       <div>
         <h2>Enter a city below 👇</h2>
@@ -51,7 +71,7 @@ function App() {
           </>}
         </div>
       </div>
-    </>
+    </div>
   }
 }
 
