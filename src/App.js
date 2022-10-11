@@ -7,6 +7,7 @@ function App() {
   const [isLoaded, setIsLoaded] = useState(false);
   const [city, setCity] = useState("New York City")
   const [results, setResults] = useState(null);
+  const [weatherType, setWeatherType] = useState("")
 
   useEffect(() => {
     fetch("https://api.openweathermap.org/data/2.5/weather?q=" + city + "&units=metric" + "&appid=" + process.env.REACT_APP_APIKEY)
@@ -18,11 +19,13 @@ function App() {
           } else {
             setIsLoaded(true);
             setResults(result);
+            setWeatherType(results.weather[0].main);
           }
         },
         (error) => {
           setIsLoaded(true);
           setError(error);
+          setWeatherType(error);
         }
       )
   }, [city])
