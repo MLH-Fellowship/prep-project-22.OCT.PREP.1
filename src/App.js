@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import './App.css';
 import logo from './mlh-prep.png'
-import MapBox from "./components/MapBox";
+import MapBox from "./components/Map/MapBox";
 
 function App() {
   const [error, setError] = useState(null);
@@ -14,7 +14,7 @@ function App() {
   });
 
   useEffect(() => {
-    fetch("https://api.openweathermap.org/data/2.5/weather?q=" + city + "&units=metric" + "&appid=" + process.env.REACT_APP_APIKEY)
+    fetch("https://api.openweathermap.org/data/2.5/weather?q=" + city + "&units=metric&appid=" + process.env.REACT_APP_APIKEY)
       .then(res => res.json())
       .then(
         (result) => {
@@ -44,11 +44,15 @@ function App() {
           type="text"
           value={city}
           onChange={event => setCity(event.target.value)} />
-        <MapBox coordinates={coordinates} setCoordinates={setCoordinates}>
-        </MapBox>
+        <MapBox 
+          coordinates={coordinates} 
+          setCoordinates={setCoordinates} 
+          setResults={setResults}
+          setError={setError}
+          setCity={setCity}
+         />
         <div className="Results">
           {!isLoaded && <h2>Loading...</h2>}
-          {/* {console.log(coordinates)} */}
           {isLoaded && results && <>
             <h3>{results.weather[0].main}</h3>
             <p>Feels like {results.main.feels_like}°C</p>
