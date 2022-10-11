@@ -8,8 +8,8 @@ function App() {
   const [city, setCity] = useState("New York City")
   const [results, setResults] = useState(null);
 
-  function success(position) {
-    var latitude = position.coords.latitude, longitude = position.coords.longitude;
+  const findUserLocation = (position) => {
+    const latitude = position.coords.latitude, longitude = position.coords.longitude;
     fetch("http://api.openweathermap.org/geo/1.0/reverse?lat="+latitude+"&lon="+longitude+"&limit=5&appid=" + process.env.REACT_APP_APIKEY)
     .then(res => res.json())
     .then(
@@ -22,7 +22,7 @@ function App() {
   
   useEffect(() => {
     if (navigator.geolocation){
-      navigator.geolocation.getCurrentPosition(success);
+      navigator.geolocation.getCurrentPosition(findUserLocation);
     }
     else{
       alert("Geolocation is not supported by this browser.");
