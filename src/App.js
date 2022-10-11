@@ -7,9 +7,17 @@ function App() {
   const [isLoaded, setIsLoaded] = useState(false);
   const [city, setCity] = useState("New York City")
   const [results, setResults] = useState(null);
-  const[coordinates,setCoordinates]=useState({lat:40.7128,lon:-74.0060});
+
   function success(position) {
-    setCoordinates({lat:position.coords.latitude, lon:position.coords.longitude});
+    var latitude = position.coords.latitude, longitude = position.coords.longitude;
+    fetch("http://api.openweathermap.org/geo/1.0/reverse?lat="+latitude+"&lon="+longitude+"&limit=5&appid=" + process.env.REACT_APP_APIKEY)
+    .then(res => res.json())
+    .then(
+      (result) => {
+        console.log(result);
+          setCity(result[0].name);
+        }
+    )
   }
   
   useEffect(() => {
@@ -22,7 +30,7 @@ function App() {
   }, [])
 
   useEffect(() => {
-    fetch("http://api.openweathermap.org/data/2.5/weather?lat="+coordinates.lat+"&lon="+coordinates.lon+"&limit=5&appid=" + process.env.REACT_APP_APIKEY)
+    fetch("http://api.openweathermap.org/data/2.5/weather?q="+city+"&appid=" + process.env.REACT_APP_APIKEY)
     .then(res => res.json())
     .then(
       (result) => {
@@ -31,7 +39,6 @@ function App() {
         } else {
           setIsLoaded(true);
           setResults(result);
-          setCity(result.name + ", " + result.sys.country);
         }
       },
       (error) => {
@@ -39,7 +46,7 @@ function App() {
         setError(error);
       }
     )
-  }, [coordinates])
+  }, [city])
 
   if (error) {
     return <div>Error: {error.message}</div>;
