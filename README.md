@@ -10,10 +10,45 @@ You'll be using React initially to build this. If you're new to React, check out
 
 ## Project Setup
 
-Follow the steps below to setup the portfolio on your local machine according to the operating system you are using.
+Follow the steps below to setup the project on your local machine according to the operating system you are using.
 
 ### Windows
+#### Using npm
+- `Step 1`: Install Node.js and npm
 
+_You can skip this step if you have node installed on your system._
+
+Open the link below to install Node.js and npm on your system.
+
+https://nodejs.org/en/download/
+
+- `Step 2`: Install all the dependencies
+
+```bash
+npm install
+```
+
+- `Step 3`: Create a `.env` file and insert your api key 
+
+_You can generate an api key by clicking on this link._
+
+https://openweathermap.org/current
+
+Add the following in your `.env` file and replace `Your_Api_Key` with the api key generated
+
+```
+REACT_APP_APIKEY=Your_Api_Key
+```
+
+- `Step 4`: Start the server.
+
+```bash
+npm start
+```
+
+You can view your project at `http://localhost:3000/`.
+
+#### Using yarn
 - `Step 1`: Install Node.js and npm
 
 _You can skip this step if you have node installed on your system._
