@@ -10,7 +10,7 @@ function App() {
 
   const findUserLocation = (position) => {
     const latitude = position.coords.latitude, longitude = position.coords.longitude;
-    fetch("http://api.openweathermap.org/geo/1.0/reverse?lat="+latitude+"&lon="+longitude+"&limit=5&appid=" + process.env.REACT_APP_APIKEY)
+    fetch("https://api.openweathermap.org/geo/1.0/reverse?lat="+latitude+"&lon="+longitude+"&limit=5&appid=" + process.env.REACT_APP_APIKEY)
     .then(res => res.json())
     .then(
       (result) => {
@@ -30,7 +30,7 @@ function App() {
   }, [])
 
   useEffect(() => {
-    fetch("http://api.openweathermap.org/data/2.5/weather?q="+city+"&units=metric&appid=" + process.env.REACT_APP_APIKEY)
+    fetch("https://api.openweathermap.org/data/2.5/weather?q="+city+"&units=metric&appid=" + process.env.REACT_APP_APIKEY)
     .then(res => res.json())
     .then(
       (result) => {
