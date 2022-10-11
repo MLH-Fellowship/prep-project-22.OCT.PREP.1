@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import './App.css';
 import logo from './mlh-prep.png'
+import ItemsNeeded from "./Components/ItemsNeeded";
 
 function App() {
   const [error, setError] = useState(null);
@@ -68,6 +69,7 @@ function App() {
             <h3>{results.weather[0].main}</h3>
             <p>Feels like {results.main.feels_like}°C</p>
             <i><p>{results.name}, {results.sys.country}</p></i>
+            <ItemsNeeded weatherKind={results.weather[0].main}/>
           </>}
         </div>
       </div>
