@@ -3,6 +3,11 @@ import "../css/Mapbox.css";
 import { MapContainer, TileLayer } from 'react-leaflet'
 import LocationMarker from './LocationMarker';
 
+/* 
+Resources:
+1. https://leafletjs.com/examples/quick-start/
+2. https://react-leaflet.js.org/
+*/
 const MapBox = ({coordinates, setCoordinates}) => {
     return (
         <div className="mapbox">

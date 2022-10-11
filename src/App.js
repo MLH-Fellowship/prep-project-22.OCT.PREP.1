@@ -39,7 +39,7 @@ function App() {
     return <>
       <img className="logo" src={logo} alt="MLH Prep Logo"></img>
       <div>
-        <h2>Enter a city below 👇</h2>
+        <h2>Enter a city below 👇 or Click on a location in 🗺</h2>
         <input
           type="text"
           value={city}
