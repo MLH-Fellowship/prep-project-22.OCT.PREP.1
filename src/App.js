@@ -7,8 +7,31 @@ function App() {
   const [isLoaded, setIsLoaded] = useState(false);
   const [city, setCity] = useState("New York City")
   const [results, setResults] = useState(null);
+  // "http://api.openweathermap.org/geo/1.0/direct?"+lat+"&"+lon+"&appid={API key}
+  // const[lat,setLat]=useState(null);
+  // const[lon,setLon]=useState(null);
+  var lat,lon;
+  async function success(position) {
+    lat=position.coords.latitude;
+    console.log(lat);
+    // setLat(position.coords.latitude);
+    // setLon(position.coords.longitude);
+    // console.log(lat);
+    lon=position.coords.longitude;
+    console.log(lon);
+  }
 
   useEffect(() => {
+    navigator.geolocation.getCurrentPosition(success);
+    fetch("http://api.openweathermap.org/geo/1.0/reverse?lat="+lat+"&lon="+lon+"&limit=5&appid=" + process.env.REACT_APP_APIKEY)
+    .then(res=>res.json())
+    .then(
+      (response)=>{
+    //     setLat(response["coord"]["lat"]);
+    //     setLon(response.coord.lon);
+        console.log(response[0].name);
+      }
+    )
     fetch("https://api.openweathermap.org/data/2.5/weather?q=" + city + "&units=metric" + "&appid=" + process.env.REACT_APP_APIKEY)
       .then(res => res.json())
       .then(
@@ -40,7 +63,7 @@ function App() {
           onChange={event => setCity(event.target.value)} />
         <div className="Results">
           {!isLoaded && <h2>Loading...</h2>}
-          {console.log(results)}
+          {/* {console.log(results)} */}
           {isLoaded && results && <>
             <h3>{results.weather[0].main}</h3>
             <p>Feels like {results.main.feels_like}°C</p>
