@@ -1,0 +1,10 @@
+#map {
+    width: 50vw;
+    height: 50vh;
+}
+
+.mapbox {
+    margin-top: 3vh;
+    margin-left:25vw;
+    justify-content: center;
+}

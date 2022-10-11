@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import './App.css';
 import logo from './mlh-prep.png'
+import Mapbox from "./components/Mapbox";
 
 function App() {
   const [error, setError] = useState(null);
@@ -38,6 +39,7 @@ function App() {
           type="text"
           value={city}
           onChange={event => setCity(event.target.value)} />
+        <Mapbox></Mapbox>
         <div className="Results">
           {!isLoaded && <h2>Loading...</h2>}
           {console.log(results)}
