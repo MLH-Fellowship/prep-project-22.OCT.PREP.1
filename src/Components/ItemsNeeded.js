@@ -21,7 +21,7 @@ const ItemsNeeded = ({ weatherKind }) => {
         if (x === 'Snow')
             return [SunGlasses, Scarf, Jacket, Gloves]
         if (x === 'Clear')
-            return [Cap, SunCream, SunGlasses, ]
+            return [Cap, SunCream, SunGlasses]
         if (x === 'Clouds')
             return [Watch, Cap]
         if (x === 'Tornado')
@@ -32,8 +32,20 @@ const ItemsNeeded = ({ weatherKind }) => {
             return [FlashLight, WaterProofBoots, RainCoat]
         if (x === 'Mist')
             return [Goggles, Mask, Watch]
-        if (x === 'Squall' || x === 'Dust' || x === 'Ash' || x === 'Sand' || x === 'Fog' || x === 'Smoke' || x === 'Haze')
-            return
+        if (x === 'Squall')
+            return [FlashLight, WaterProofBoots, RainCoat, Goggles]
+        if (x === 'Dust')
+            return [FlashLight, Goggles]
+        if (x === 'Ash')
+            return [Goggles, Mask, Gloves]
+        if (x === 'Sand')
+            return [FlashLight, Goggles, Mask, Gloves]
+        if (x === 'Fog')
+            return [FlashLight, Goggles]
+        if (x === 'Smoke')
+            return [Goggles, Mask]
+        if (x === 'Haze')
+            return [Goggles, Mask]
         else 
             return undefined
     }
