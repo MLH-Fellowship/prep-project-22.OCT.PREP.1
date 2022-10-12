@@ -32,7 +32,10 @@ const ItemsNeeded = ({ weatherKind }) => {
             return [FlashLight, WaterProofBoots, RainCoat]
         if (x === 'Mist')
             return [Goggles, Mask, Watch]
-        else return undefined
+        if (x === 'Squall' || x === 'Dust' || x === 'Ash' || x === 'Sand' || x === 'Fog' || x === 'Smoke' || x === 'Haze')
+            return
+        else 
+            return undefined
     }
 
     return (
