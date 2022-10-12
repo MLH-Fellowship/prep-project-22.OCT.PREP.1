@@ -3,16 +3,17 @@ import { useEffect, useState } from "react";
 import "leaflet/dist/leaflet.css";
 import { useMap, Marker, Popup, useMapEvent } from 'react-leaflet'
 
-const greenIcon = new L.Icon({
-    iconUrl:
-    'https://img.icons8.com/arcade/64/000000/experimental-marker-arcade.png',
-	iconSize: [35, 41],
-	iconAnchor: [12, 41],
-	popupAnchor: [1, -34],
-	shadowSize: [41, 41],
-});
-
 export default function LocationMarker({coordinates, setCoordinates, setResults, setError, setCity}) {
+    const [weatherIcon, setWeatherIcon] = useState('');
+
+    const greenIcon = new L.Icon({
+        iconUrl:"http://openweathermap.org/img/w/" + weatherIcon + ".png",
+        iconSize: [35, 41],
+        iconAnchor: [12, 41],
+        popupAnchor: [1, -34],
+        shadowSize: [41, 41],
+    });
+    
     const [position, setPosition] = useState({
         lat: 40.7143,
         lon: -74.006
@@ -27,13 +28,14 @@ export default function LocationMarker({coordinates, setCoordinates, setResults,
                 } else {
                     setResults(res);
                     setCity(res.name);
+                    setWeatherIcon(res.weather[0].icon);
                 }
             })
             .catch((error)=>{
                 setError(error);
             });
         }
-    }, [position])
+    }, [position, weatherIcon])
 
     const map = useMap();
     map.setView(coordinates);
