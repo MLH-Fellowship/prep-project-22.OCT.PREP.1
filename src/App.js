@@ -12,6 +12,7 @@ function App() {
     lat: 40.7143,
     lon: -74.006
   });
+  const [weatherType, setWeatherType] = useState("")
 
   useEffect(() => {
     fetch("https://api.openweathermap.org/data/2.5/weather?q=" + city + "&units=metric&appid=" + process.env.REACT_APP_APIKEY)
@@ -22,21 +23,43 @@ function App() {
             setIsLoaded(false)
           } else {
             setIsLoaded(true);
+            console.log(result)
             setResults(result);
             setCoordinates(result.coord);
+            setWeatherType(result.weather[0].main);
           }
         },
         (error) => {
           setIsLoaded(true);
           setError(error);
+          setWeatherType(error);
         }
       )
   }, [city])
 
+  const weather = (weatherType) => {
+    switch (weatherType) {
+      case "Clouds":
+        return "cloudy"
+      case "Clear":
+        return "clear"
+      case "Rain":
+        return "rainy"
+      case "Snow":
+        return "snowy"
+      case "Thunderstorm":
+        return "stormy"
+      case "Drizzle":
+        return "drizzly"
+      default:
+        return "haze"
+    }
+  }
+
   if (error) {
     return <div>Error: {error.message}</div>;
   } else {
-    return <>
+    return <div className={"main " + weather(weatherType)}>
       <img className="logo" src={logo} alt="MLH Prep Logo"></img>
       <div>
         <h2>Enter a city below 👇 or Click on a location in 🗺</h2>
@@ -60,7 +83,7 @@ function App() {
           </>}
         </div>
       </div>
-    </>
+    </div>
   }
 }
 
