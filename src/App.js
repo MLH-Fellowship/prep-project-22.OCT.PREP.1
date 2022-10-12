@@ -1,12 +1,17 @@
 import { useEffect, useState } from "react";
 import './App.css';
 import logo from './mlh-prep.png'
+import MapBox from "./components/Map/MapBox";
 
 function App() {
   const [error, setError] = useState(null);
   const [isLoaded, setIsLoaded] = useState(false);
   const [city, setCity] = useState("New York City")
   const [results, setResults] = useState(null);
+  const [coordinates, setCoordinates] = useState({
+    lat: 40.7143,
+    lon: -74.006
+  });
   const [weatherType, setWeatherType] = useState("")
 
 
@@ -42,6 +47,7 @@ function App() {
             setIsLoaded(true);
             console.log(result)
             setResults(result);
+            setCoordinates(result.coord);
             setWeatherType(result.weather[0].main);
           }
         },
@@ -77,14 +83,20 @@ function App() {
     return <div className={"main " + weather(weatherType)}>
       <img className="logo" src={logo} alt="MLH Prep Logo"></img>
       <div>
-        <h2>Enter a city below 👇</h2>
+        <h2>Enter a city below 👇 or Click on a location in 🗺</h2>
         <input
           type="text"
           value={city}
           onChange={event => setCity(event.target.value)} />
+        <MapBox 
+          coordinates={coordinates} 
+          setCoordinates={setCoordinates} 
+          setResults={setResults}
+          setError={setError}
+          setCity={setCity}
+         />
         <div className="Results">
           {!isLoaded && <h2>Loading...</h2>}
-          {console.log(results)}
           {isLoaded && results && <>
             <h3>{results.weather[0].main}</h3>
             <p>Feels like {results.main.feels_like}°C</p>
