@@ -39,9 +39,9 @@ const ItemsNeeded = ({ weatherKind }) => {
         <div className="items-outer-container">
             <h3>Carry the below items!</h3>
             <div className='items-inner-container'>
-                {
-                    getCarryItems(weatherKind) !== undefined && 
-                    getCarryItems(weatherKind).map((ele, index) => { 
+                {getCarryItems(weatherKind) === undefined 
+                    ? <alert>Error: You have entered wrong location!</alert>
+                    : getCarryItems(weatherKind).map((ele, index) => { 
                         return (
                             <div key={index} className="items-card">
                                 <img src={ele} alt="required item" />
