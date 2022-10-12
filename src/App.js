@@ -123,7 +123,7 @@ function App() {
             )}
           </div>
         </div>
-        <Forecast />
+        <Forecast city={city} />
       </div>
     );
   }
