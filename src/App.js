@@ -9,8 +9,30 @@ function App() {
   const [results, setResults] = useState(null);
   const [weatherType, setWeatherType] = useState("")
 
+
+  const findUserLocation = (position) => {
+    const latitude = position.coords.latitude, longitude = position.coords.longitude;
+    fetch("https://api.openweathermap.org/geo/1.0/reverse?lat="+latitude+"&lon="+longitude+"&limit=5&appid=" + process.env.REACT_APP_APIKEY)
+    .then(res => res.json())
+    .then(
+      (result) => {
+        console.log(result);
+          setCity(result[0].name);
+        }
+    )
+  }
+  
   useEffect(() => {
-    fetch("https://api.openweathermap.org/data/2.5/weather?q=" + city + "&units=metric" + "&appid=" + process.env.REACT_APP_APIKEY)
+    if (navigator.geolocation){
+      navigator.geolocation.getCurrentPosition(findUserLocation);
+    }
+    else{
+      alert("Geolocation is not supported by this browser.");
+    }
+  }, [])
+
+  useEffect(() => {
+    fetch("https://api.openweathermap.org/data/2.5/weather?q=" + city + "&units=metric&appid=" + process.env.REACT_APP_APIKEY)
       .then(res => res.json())
       .then(
         (result) => {
@@ -27,9 +49,8 @@ function App() {
           setIsLoaded(true);
           setError(error);
           setWeatherType(error);
-        }
-      )
-  }, [city])
+        })
+      }, [city])
 
   const weather = (weatherType) => {
     switch (weatherType) {
