@@ -8,7 +8,7 @@ Resources:
 1. https://leafletjs.com/examples/quick-start/
 2. https://react-leaflet.js.org/
 */
-const MapBox = ({coordinates, setCoordinates, setResults, setError, setCity}) => {
+const MapBox = ({coordinates, setCoordinates, setResults, setError, setCity, setWeatherIcon}) => {
     return (
         <div className="mapbox">
             <MapContainer center={[coordinates.lat, coordinates.lon]} zoom={13} scrollWheelZoom={true} id="map">
@@ -22,6 +22,7 @@ const MapBox = ({coordinates, setCoordinates, setResults, setError, setCity}) =>
                     setResults={setResults}
                     setError={setError}
                     setCity={setCity}
+                    setWeatherIcon={setWeatherIcon}
                 />
             </MapContainer>
         </div>

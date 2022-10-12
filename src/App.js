@@ -11,6 +11,8 @@ function App() {
   const [isLoaded, setIsLoaded] = useState(false);
   const [city, setCity] = useState("New York City")
   const [results, setResults] = useState(null);
+  const [weatherIcon, setWeatherIcon] = useState("");
+
   const [coordinates, setCoordinates] = useState({
     lat: 40.7143,
     lon: -74.006
@@ -26,6 +28,7 @@ function App() {
       (result) => {
         console.log(result);
           setCity(result[0].name);
+          setWeatherIcon(result.weather[0].icon);
         }
     )
   }
@@ -52,6 +55,7 @@ function App() {
             setResults(result);
             setCoordinates(result.coord);
             setWeatherType(result.weather[0].main);
+            setWeatherIcon(result.weather[0].icon);
           }
         },
         (error) => {
@@ -97,6 +101,7 @@ function App() {
           setResults={setResults}
           setError={setError}
           setCity={setCity}
+          setWeatherIcon={setWeatherIcon}
          />
         <div className="Results">
           {!isLoaded && <h2>Loading...</h2>}
