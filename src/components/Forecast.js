@@ -3,9 +3,6 @@ export default function Forecast({ city }) {
   const [forecastData, setForecastData] = useState(null);
 
   useEffect(() => {
-    console.log(
-      `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${process.env.REACT_APP_APIKEY}`
-    );
     fetch(
       `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${process.env.REACT_APP_APIKEY}`
     )
