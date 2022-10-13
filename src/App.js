@@ -3,7 +3,7 @@ import './App.css';
 import logo from './mlh-prep.png'
 
 import ItemsNeeded from "./Components/ItemsNeeded";
-import MapBox from "./components/Map/MapBox";
+import MapBox from "./Components/Map/MapBox";
 
 
 function App() {
@@ -11,6 +11,7 @@ function App() {
   const [isLoaded, setIsLoaded] = useState(false);
   const [city, setCity] = useState("New York City")
   const [results, setResults] = useState(null);
+  const [suggestedLocation, setSuggestedLocation] = useState("");
   const [coordinates, setCoordinates] = useState({
     lat: 40.7143,
     lon: -74.006
@@ -40,6 +41,20 @@ function App() {
   }, [])
 
   useEffect(() => {
+    {/*here we call the API for each change in city*/}
+    fetch(
+      `https://api.geoapify.com/v1/geocode/autocomplete?text=${city}&apiKey=aaf2304be09d4a69b589e48801c39366`
+    )
+      .then((res) => res.json())
+      .then((res) => {
+        console.log(res);
+        const ci = [];
+        res.features.forEach((feature) => {
+          ci.push(feature.properties.formatted);
+        });
+        setSuggestedLocation(ci);
+      });
+
     fetch("https://api.openweathermap.org/data/2.5/weather?q=" + city + "&units=metric&appid=" + process.env.REACT_APP_APIKEY)
       .then(res => res.json())
       .then(
@@ -91,7 +106,11 @@ function App() {
           type="text"
           value={city}
           onChange={event => setCity(event.target.value)} />
-        <MapBox 
+          <div >
+            {/* frontend part to be added by akanksha here */}
+            {suggestedLocation}
+          </div>        
+          <MapBox 
           coordinates={coordinates} 
           setCoordinates={setCoordinates} 
           setResults={setResults}
@@ -112,4 +131,7 @@ function App() {
   }
 }
 
+// .map((l, i) => (
+//   <li id={i}>{l}</li>
+// ))
 export default App;
