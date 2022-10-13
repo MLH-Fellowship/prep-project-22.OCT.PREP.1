@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import './App.css';
 import logo from './mlh-prep.png'
 import MapBox from "./components/Map/MapBox";
+import Places from "./components/Places/Places";
 
 function App() {
   const [error, setError] = useState(null);
@@ -13,6 +14,7 @@ function App() {
     lon: -74.006
   });
   const [places, setPlaces] = useState([]);
+  const [isPlacesLoaded, setIsPlacesLoaded] = useState(false);
 
   useEffect(() => {
     fetch("https://api.openweathermap.org/data/2.5/weather?q=" + city + "&units=metric&appid=" + process.env.REACT_APP_APIKEY)
@@ -32,9 +34,13 @@ function App() {
           setError(error);
         }
       )
-       fetch("https://api.geoapify.com/v2/places?categories=tourism.sights&bias=proximity:7.744,48.583&limit=10&apiKey=" + process.env.REACT_APP_GEOAPIFY_APIKEY)
+  }, [city])
+
+  useEffect(() => {
+      fetch("https://api.geoapify.com/v2/places?categories=tourism.sights&bias=proximity:" + coordinates.lon + "," + coordinates.lat + "&limit=10&apiKey=" + process.env.REACT_APP_GEOAPIFY_APIKEY)
         .then(resp => resp.json())
         .then((data) => {
+          setIsPlacesLoaded(false);
           let tempPlaces = [];
           data.features.forEach((place)=>{
             const temp = {
@@ -52,9 +58,10 @@ function App() {
             "lon": coordinates.lon
           }];
           setPlaces(tempPlaces);
+          setIsPlacesLoaded(true);
         });
-  }, [city])
-  console.log(places);
+  }, [coordinates])
+
   if (error) {
     return <div>Error: {error.message}</div>;
   } else {
@@ -81,6 +88,15 @@ function App() {
             <i><p>{results.name}, {results.sys.country}</p></i>
           </>}
         </div>
+        <h2>Explore places nearby to <span className="places">{city}</span></h2>
+        {isPlacesLoaded === true ? 
+            <Places
+              coordinates={coordinates}
+              places={places}
+            />
+          :
+           <h2>Loading nearby places!</h2>
+        }
       </div>
     </>
   }
