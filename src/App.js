@@ -37,7 +37,7 @@ function App() {
   }, [city])
 
   useEffect(() => {
-      fetch("https://api.geoapify.com/v2/places?categories=tourism.sights&bias=proximity:" + coordinates.lon + "," + coordinates.lat + "&limit=10&apiKey=" + process.env.REACT_APP_GEOAPIFY_APIKEY)
+      fetch("https://api.geoapify.com/v2/places?categories=tourism.sights&bias=proximity:" + coordinates.lon + "," + coordinates.lat + "&limit=10&apiKey=" + process.env.REACT_APP_GEOKEY)
         .then(resp => resp.json())
         .then((data) => {
           setIsPlacesLoaded(false);

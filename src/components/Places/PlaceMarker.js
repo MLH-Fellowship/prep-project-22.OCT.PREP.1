@@ -41,8 +41,8 @@ export default function PlaceMarker({coordinates, places}) {
             return (
                 <Marker position={[place.lat, place.lon]} icon={greenMarker}>
                     <Popup>
-                        <h3>{place.name}</h3>
-                        <h3>Address</h3>
+                        <h1>{place.name}</h1>
+                        <h2>Address</h2>
                         <p>{place.address}</p>
                     </Popup>
                 </Marker>
