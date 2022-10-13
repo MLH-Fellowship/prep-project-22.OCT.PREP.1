@@ -1,9 +1,9 @@
 import { useState, useEffect } from "react";
 import "./Forecast.css";
-
+import ForecastCard from "./ForecastCard";
 export default function Forecast({ city }) {
   const [forecastData, setForecastData] = useState([]);
-  const [filterData, setFilterData] = useState([]);
+  const [renderForecastCard, setRenderForecastCard] = useState(0);
 
   useEffect(() => {
     fetch(
@@ -13,7 +13,6 @@ export default function Forecast({ city }) {
       .then(
         result => {
           if (result["cod"] === "200") {
-            setForecastData(result);
             let data = {};
             let list = result.list;
             for (let i = 0; i < list.length; i++) {
@@ -35,12 +34,12 @@ export default function Forecast({ city }) {
               };
               // console.log("date:",data_date,"time:",data_time,data[data_date][data_time]);
             }
-            setFilterData(data);
-            console.log("Data", data, data["13"]["03"]);
-            console.log("forecast", list);
-            let keys = Object.keys(data["13"]);
-            for (let i = 0; i < keys.length; i++) {}
-            console.log("Forecast", data);
+            setForecastData(data);
+            // console.log("Data", data, data["13"]["03"]);
+            // console.log("forecast", list);
+            // let keys = Object.keys(data["13"]);
+            // for (let i = 0; i < keys.length; i++) {}
+            // console.log("Forecast", data);
           }
         },
         error => {
@@ -49,26 +48,35 @@ export default function Forecast({ city }) {
       );
   }, [city]);
 
-  const expandDate = (e, idx) => {
-    console.log(filterData[Object.keys(filterData)[idx]]);
+  const handleDateClick = (e, idx) => {
+    setRenderForecastCard(idx);
+    console.log(forecastData[Object.keys(forecastData)[idx]]);
   };
 
   return (
     <div className="forecast-container">
-      {
-        Object.keys(filterData).map((day, idx) => (
-          <button
-            onClick={e => expandDate(e, idx)}
-            key={idx}
-            className="days-btn"
-          >
-            {day}
-          </button>
-        ))
-        // <img
-        //   src={`http://openweathermap.org/img/wn/${filterData["14"]["03"].icon}@2x.png`}
-        // />
-      }
+      <div className="day-row">
+        {
+          Object.keys(forecastData).map((day, idx) => (
+            <button
+              onClick={e => handleDateClick(e, idx)}
+              key={idx}
+              className="days-btn"
+            >
+              {day}
+            </button>
+          ))
+          // <img
+          //   src={`http://openweathermap.org/img/wn/${forecastData["14"]["03"].icon}@2x.png`}
+          // />
+        }
+      </div>
+      <div>
+        <ForecastCard
+          forecastData={forecastData}
+          renderForecastCard={renderForecastCard}
+        />
+      </div>
     </div>
   );
 }

@@ -14,6 +14,7 @@ function App() {
     lon: -74.006,
   });
   const [weatherType, setWeatherType] = useState("");
+  const [filterData, setFilterData] = useState([]);
 
   const findUserLocation = position => {
     const latitude = position.coords.latitude,
