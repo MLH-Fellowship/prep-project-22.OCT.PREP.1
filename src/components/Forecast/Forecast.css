@@ -54,10 +54,8 @@
   width:90vw;
 }
 .card-container{
-  /* width:10rem !important; */
   margin:1rem;
   padding:1rem;
-  /* border:2px solid white; */
   border-radius:0.5rem;
   background-image: linear-gradient(-45deg, blue,cyan);
   display:flex;
