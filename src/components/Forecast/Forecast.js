@@ -55,6 +55,7 @@ export default function Forecast({ city }) {
 
   return (
     <div className="forecast-container">
+      <div className="forecast-title">Hourly Forecast</div>
       <div className="day-row">
         {Object.keys(forecastData).map((day, idx) => (
           <button
