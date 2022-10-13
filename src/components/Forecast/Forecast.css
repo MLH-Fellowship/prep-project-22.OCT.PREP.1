@@ -1,0 +1,18 @@
+.forecast-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.days-btn {
+  all: unset;
+  cursor: pointer;
+  border-radius: 100%;
+  margin: 10px 5px;
+  padding: 10px;
+}
+
+.days-btn:hover {
+  border: 1px solid white;
+  /* transform: scaleY(2px); */
+}

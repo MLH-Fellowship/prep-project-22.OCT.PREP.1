@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import "./App.css";
 import logo from "./mlh-prep.png";
 import MapBox from "./components/Map/MapBox";
-import Forecast from "./components/Forecast";
+import Forecast from "./components/Forecast/Forecast";
 
 function App() {
   const [error, setError] = useState(null);
