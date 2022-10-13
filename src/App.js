@@ -2,16 +2,19 @@ import { useEffect, useState } from "react";
 import './App.css';
 import logo from './mlh-prep.png'
 
-import ItemsNeeded from "./Components/ItemsNeeded";
-import MapBox from "./Components/Map/MapBox";
+import ItemsNeeded from "./components/ItemsNeeded";
+import MapBox from "./components/Map/MapBox";
 
+// A timer to help while clearing setTimeout 
+// inside `debouncedSuggestLocations` function.
+let timerForSuggestedLocations;
 
 function App() {
   const [error, setError] = useState(null);
   const [isLoaded, setIsLoaded] = useState(false);
   const [city, setCity] = useState("New York City")
   const [results, setResults] = useState(null);
-  const [suggestedLocation, setSuggestedLocation] = useState("");
+  const [suggestedLocation, setSuggestedLocation] = useState([]);
   const [coordinates, setCoordinates] = useState({
     lat: 40.7143,
     lon: -74.006
@@ -30,6 +33,31 @@ function App() {
         }
     )
   }
+
+  const suggestLocations = () => {
+    if(!city) return setSuggestedLocation([]);
+
+    fetch(
+      `https://api.geoapify.com/v1/geocode/autocomplete?text=${city}&apiKey=${process.env.REACT_APP_AUTOCOMPLETE_LOCATION_APIKEY}`
+    )
+      .then((res) => res.json())
+      .then((res) => {
+        console.log(res);
+        const ci = [];
+        res.features.forEach((feature) => {
+          ci.push(feature.properties.formatted);
+        });
+        setSuggestedLocation(ci);
+    });
+  };
+
+  const debouncedSuggestLocations = () => {
+    clearTimeout(timerForSuggestedLocations);
+
+    timerForSuggestedLocations = setTimeout(() => {
+      suggestLocations();
+    }, 500);
+  };
   
   useEffect(() => {
     if (navigator.geolocation){
@@ -41,19 +69,7 @@ function App() {
   }, [])
 
   useEffect(() => {
-    {/*here we call the API for each change in city*/}
-    fetch(
-      `https://api.geoapify.com/v1/geocode/autocomplete?text=${city}&apiKey=aaf2304be09d4a69b589e48801c39366`
-    )
-      .then((res) => res.json())
-      .then((res) => {
-        console.log(res);
-        const ci = [];
-        res.features.forEach((feature) => {
-          ci.push(feature.properties.formatted);
-        });
-        setSuggestedLocation(ci);
-      });
+    debouncedSuggestLocations();
 
     fetch("https://api.openweathermap.org/data/2.5/weather?q=" + city + "&units=metric&appid=" + process.env.REACT_APP_APIKEY)
       .then(res => res.json())
@@ -131,7 +147,4 @@ function App() {
   }
 }
 
-// .map((l, i) => (
-//   <li id={i}>{l}</li>
-// ))
 export default App;
