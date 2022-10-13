@@ -9,7 +9,7 @@ body {
   margin-left: auto;
   margin-right: auto;
   width: 20%;
-  margin-top: 20px;
+  padding-top: 20px;
 }
 
 input {
@@ -30,6 +30,45 @@ input {
   box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
 }
 
+
 .places {
   color: #f39c12;
 }
+
+.main{
+  background-size: cover;
+  background-position: bottom;
+  background-repeat: no-repeat;
+  transition: 0.5s ease-out;
+  height: 100vh;
+  width: 100vw;
+}
+
+.drizzly{
+  background-image: url(./weather_bg_images/Group_3xx_Drizzle.jpg);
+}
+
+.snowy {
+  background-image: url(./weather_bg_images/Group_6xx_Snow.jpg);
+}
+
+.stormy {
+  background-image: url(./weather_bg_images/Group_2xx_Thunderstorm.jpg);
+}
+
+.rainy {
+  background-image: url(./weather_bg_images/Group_5xx_Rain.jpg);
+}
+
+.clear {
+  background-image: url(./weather_bg_images/Group_800_Clear.jpg);
+}
+
+.cloudy {
+  background-image: url(./weather_bg_images/Group_80x_Clouds.jpg);
+}
+
+.haze {
+  background-image: url(./weather_bg_images/Group_7xx_Atmosphere.jpg);
+}
+
