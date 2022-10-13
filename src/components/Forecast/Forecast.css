@@ -2,6 +2,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
 }
 
 .days-btn {
@@ -15,4 +16,11 @@
 .days-btn:hover {
   border: 1px solid white;
   /* transform: scaleY(2px); */
+}
+
+.day-row {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
 }
