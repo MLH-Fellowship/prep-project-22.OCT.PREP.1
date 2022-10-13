@@ -44,13 +44,13 @@ function App() {
           type="text"
           value={city}
           onChange={event => setCity(event.target.value)} />
-        <MapBox 
-          coordinates={coordinates} 
-          setCoordinates={setCoordinates} 
+        <MapBox
+          coordinates={coordinates}
+          setCoordinates={setCoordinates}
           setResults={setResults}
           setError={setError}
           setCity={setCity}
-         />
+        />
         <div className="Results">
           {!isLoaded && <h2>Loading...</h2>}
           {isLoaded && results && <>
