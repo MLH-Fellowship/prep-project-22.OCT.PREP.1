@@ -56,20 +56,15 @@ export default function Forecast({ city }) {
   return (
     <div className="forecast-container">
       <div className="day-row">
-        {
-          Object.keys(forecastData).map((day, idx) => (
-            <button
-              onClick={e => handleDateClick(e, idx)}
-              key={idx}
-              className="days-btn"
-            >
-              {day}
-            </button>
-          ))
-          // <img
-          //   src={`http://openweathermap.org/img/wn/${forecastData["14"]["03"].icon}@2x.png`}
-          // />
-        }
+        {Object.keys(forecastData).map((day, idx) => (
+          <button
+            onClick={e => handleDateClick(e, idx)}
+            key={idx}
+            className="days-btn"
+          >
+            {day}
+          </button>
+        ))}
       </div>
       <div>
         <ForecastCard
