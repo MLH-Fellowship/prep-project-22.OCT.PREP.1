@@ -12,6 +12,7 @@ function App() {
     lat: 40.7143,
     lon: -74.006
   });
+  const [places, setPlaces] = useState([]);
 
   useEffect(() => {
     fetch("https://api.openweathermap.org/data/2.5/weather?q=" + city + "&units=metric&appid=" + process.env.REACT_APP_APIKEY)
@@ -31,8 +32,29 @@ function App() {
           setError(error);
         }
       )
+       fetch("https://api.geoapify.com/v2/places?categories=tourism.sights&bias=proximity:7.744,48.583&limit=10&apiKey=" + process.env.REACT_APP_GEOAPIFY_APIKEY)
+        .then(resp => resp.json())
+        .then((data) => {
+          let tempPlaces = [];
+          data.features.forEach((place)=>{
+            const temp = {
+              "name": place.properties.name,
+              "address": place.properties.address_line1 + place.properties.address_line2,
+              "lat": place.properties.lat,
+              "lon": place.properties.lon
+            }
+            tempPlaces.push(temp);
+          });
+          tempPlaces = [...tempPlaces, {
+            "name": "Your Location",
+            "address": "You are here!",
+            "lat": coordinates.lat,
+            "lon": coordinates.lon
+          }];
+          setPlaces(tempPlaces);
+        });
   }, [city])
-
+  console.log(places);
   if (error) {
     return <div>Error: {error.message}</div>;
   } else {
