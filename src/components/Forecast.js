@@ -1,7 +1,10 @@
 import { getByDisplayValue } from "@testing-library/react";
 import { useState, useEffect } from "react";
 export default function Forecast({ city }) {
-const [forecastData, setForecastData] = useState(null);
+const [forecastData, setForecastData] = useState([]);
+const [filterData, setFilterData] = useState(null);
+
+
 
   useEffect(() => {
     fetch(
@@ -29,8 +32,14 @@ const [forecastData, setForecastData] = useState(null);
                                               icon:list[i].weather[0].icon};
                 console.log("date:",data_date,"time:",data_time,data[data_date][data_time]);
             }
+            setFilterData(data);
             console.log("Data", data,data["13"]["03"]);
             console.log("forecast", list);
+            let keys=Object.keys(data["13"])
+            for(let i=0;i<keys.length;i++){
+              console.log("-----",data["13"][keys[i]])
+            }
+            console.log("13th october",data["13"])
           }
         },
         error => {
@@ -38,5 +47,9 @@ const [forecastData, setForecastData] = useState(null);
         }
       );
   }, [city]);
-  return <div>Forecast</div>;
+  return (
+    <div>
+      {filterData&&<img src={`http://openweathermap.org/img/wn/${filterData["14"]["03"].icon}@2x.png`} />}
+    </div>
+  );
 }
