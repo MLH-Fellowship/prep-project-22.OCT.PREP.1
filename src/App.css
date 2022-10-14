@@ -21,8 +21,10 @@ input {
 
 .Results {
   background-color: white;
-  margin-left: 150px;
-  margin-right: 150px;
+  margin: 0 auto;
+  width: 60%;
+  /* margin-left: 150px;
+  margin-right: 150px; */
   margin-top: 20px;
   border-radius: 8px;
   color: black;
