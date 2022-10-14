@@ -3,9 +3,7 @@ import './App.css';
 import logo from './mlh-prep.png'
 
 import ItemsNeeded from "./Components/ItemsNeeded";
-import MapBox from "./Components/Map/MapBox";
-import { ReactSearchAutocomplete } from 'react-search-autocomplete';
-
+import MapBox from "./components/Map/MapBox";
 
 // A timer to help while clearing setTimeout 
 // inside `debouncedSuggestLocations` function.
@@ -44,16 +42,14 @@ function App() {
     )
       .then((res) => res.json())
       .then((res) => {
-        console.log(res);
         const ci = [];
-        res.features.forEach((feature) => {
-          ci.push(<div>
-            {feature.properties.formatted}
-          </div>
-            );
+        res.features.forEach((feature, idx) => {
+          ci.push({
+            id: idx,
+            location: feature.properties.formatted
+          });
         });
         setSuggestedLocation(ci);
-        
     });
   };
 
@@ -62,7 +58,7 @@ function App() {
 
     timerForSuggestedLocations = setTimeout(() => {
       suggestLocations();
-    }, 500);
+    }, 200);
   };
   
   useEffect(() => {
@@ -75,8 +71,6 @@ function App() {
   }, [])
 
   useEffect(() => {
-    debouncedSuggestLocations();
-
     fetch("https://api.openweathermap.org/data/2.5/weather?q=" + city + "&units=metric&appid=" + process.env.REACT_APP_APIKEY)
       .then(res => res.json())
       .then(
@@ -125,18 +119,22 @@ function App() {
       <div>
         <h2>Enter a city below 👇 or Click on a location in 🗺</h2>
         <input
+          className="search-city-input"
+          list="locations"
           type="text"
           value={city}
-          onChange={event => setCity(event.target.value)} />
-          <div className="drop-down-menu">
-            {/* <select> */}
-            {/* {suggestedLocation} */}
-
-        {/* {suggestedLocation.map((d, index) => (<option key = {index} value={d}>{d}</option>))}  */}
-        {suggestedLocation.map((d, index) => (<p>{index}{d}</p>))} 
-            {/* </select> */}
-                
-          </div>        
+          onChange={event => { 
+            setCity(event.target.value);
+            debouncedSuggestLocations();
+          }}
+          pattern={suggestedLocation.join("|")}
+          autoComplete="off"
+          />
+          <datalist id="locations">
+            { suggestedLocation.map((loc) => (
+              <option key={loc.id}>{loc.location}</option>
+            ))}
+          </datalist>
           
           <MapBox 
           coordinates={coordinates} 
