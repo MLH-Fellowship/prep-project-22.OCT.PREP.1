@@ -2,8 +2,8 @@ import { useEffect, useState } from "react";
 import './App.css';
 import logo from './mlh-prep.png'
 
-import ItemsNeeded from "./Components/ItemsNeeded";
-import MapBox from "./Components/Map/MapBox";
+import ItemsNeeded from "./components/ItemsNeeded";
+import MapBox from "./components/Map/MapBox";
 
 
 function App() {
