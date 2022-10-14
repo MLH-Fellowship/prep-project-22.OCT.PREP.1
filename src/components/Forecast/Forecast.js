@@ -44,7 +44,6 @@ export default function Forecast({ city }) {
 
   const handleDateClick = (e, idx) => {
     setRenderForecastCard(idx);
-    console.log(forecastData[Object.keys(forecastData)[idx]]);
   };
 
   return (

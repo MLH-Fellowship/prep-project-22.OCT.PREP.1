@@ -3,7 +3,6 @@ import "./ForecastCard.css";
 const ForecastCard = ({ forecastData, renderForecastCard }) => {
   const renderCardData =
     forecastData[Object.keys(forecastData)[renderForecastCard]];
-  console.log(renderCardData);
   return (
     <div className="card-wrapper">
       {renderCardData &&
