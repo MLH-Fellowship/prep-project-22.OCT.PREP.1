@@ -30,6 +30,11 @@ input {
   box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
 }
 
+
+.places {
+  color: #f39c12;
+}
+
 .main{
   background-size: cover;
   background-position: bottom;
@@ -66,3 +71,4 @@ input {
 .haze {
   background-image: url(./weather_bg_images/Group_7xx_Atmosphere.jpg);
 }
+
