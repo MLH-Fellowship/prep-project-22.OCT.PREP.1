@@ -16,7 +16,9 @@ function App() {
     lon: -74.006
   });
   const [weatherType, setWeatherType] = useState("")
-
+  const [sunrise, setSunrise] = useState("")
+  const [sunset, setSunset] = useState("")
+  const [timezone, setTimezone] = useState("")
 
   const findUserLocation = (position) => {
     const latitude = position.coords.latitude, longitude = position.coords.longitude;
@@ -52,6 +54,9 @@ function App() {
             setResults(result);
             setCoordinates(result.coord);
             setWeatherType(result.weather[0].main);
+            setSunrise(result.sys.sunrise);
+            setSunset(result.sys.sunset);
+            setTimezone(result.timezone)
           }
         },
         (error) => {
