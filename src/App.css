@@ -66,3 +66,13 @@ input {
 .haze {
   background-image: url(./weather_bg_images/Group_7xx_Atmosphere.jpg);
 }
+
+.drop-down-menu {
+  background-color: white;
+  color: black;
+  width: 220px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  
+}

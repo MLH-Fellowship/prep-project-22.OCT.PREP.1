@@ -2,8 +2,10 @@ import { useEffect, useState } from "react";
 import './App.css';
 import logo from './mlh-prep.png'
 
-import ItemsNeeded from "./components/ItemsNeeded";
-import MapBox from "./components/Map/MapBox";
+import ItemsNeeded from "./Components/ItemsNeeded";
+import MapBox from "./Components/Map/MapBox";
+import { ReactSearchAutocomplete } from 'react-search-autocomplete';
+
 
 // A timer to help while clearing setTimeout 
 // inside `debouncedSuggestLocations` function.
@@ -45,9 +47,13 @@ function App() {
         console.log(res);
         const ci = [];
         res.features.forEach((feature) => {
-          ci.push(feature.properties.formatted);
+          ci.push(<div>
+            {feature.properties.formatted}
+          </div>
+            );
         });
         setSuggestedLocation(ci);
+        
     });
   };
 
@@ -122,10 +128,16 @@ function App() {
           type="text"
           value={city}
           onChange={event => setCity(event.target.value)} />
-          <div >
-            {/* frontend part to be added by akanksha here */}
-            {suggestedLocation}
+          <div className="drop-down-menu">
+            {/* <select> */}
+            {/* {suggestedLocation} */}
+
+        {/* {suggestedLocation.map((d, index) => (<option key = {index} value={d}>{d}</option>))}  */}
+        {suggestedLocation.map((d, index) => (<p>{index}{d}</p>))} 
+            {/* </select> */}
+                
           </div>        
+          
           <MapBox 
           coordinates={coordinates} 
           setCoordinates={setCoordinates} 
