@@ -137,6 +137,9 @@ function App() {
           <p>Humidity {results.main.humidity}%</p>
           <i><p>{results.name}, {results.sys.country}</p></i>
           <ItemsNeeded weatherKind={results.weather[0].main}/>
+        </>}
+      </div>
+      <div>
        <h2>Explore places nearby to <span className="places">{city}</span></h2>
         {isPlacesLoaded === true ? 
             <Places
