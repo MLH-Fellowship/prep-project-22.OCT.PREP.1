@@ -7,7 +7,7 @@ const ForecastCard = ({ forecastData, renderForecastCard }) => {
   return (
     <div className="card-wrapper">
       {renderCardData &&
-        Object.keys(renderCardData).map((key) => (
+        Object.keys(renderCardData).map(key => (
           <div className="card-container">
             <p>{key}:00 hours</p>
             <p className="temp">
@@ -15,6 +15,7 @@ const ForecastCard = ({ forecastData, renderForecastCard }) => {
             </p>
             <img
               src={`http://openweathermap.org/img/wn/${renderCardData[key].icon}@2x.png`}
+              alt="weather icon"
             />
           </div>
         ))}
