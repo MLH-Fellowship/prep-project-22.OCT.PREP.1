@@ -32,14 +32,8 @@ export default function Forecast({ city }) {
                 temp: list[i].main.temp,
                 icon: list[i].weather[0].icon,
               };
-              // console.log("date:",data_date,"time:",data_time,data[data_date][data_time]);
             }
             setForecastData(data);
-            // console.log("Data", data, data["13"]["03"]);
-            // console.log("forecast", list);
-            // let keys = Object.keys(data["13"]);
-            // for (let i = 0; i < keys.length; i++) {}
-            // console.log("Forecast", data);
           }
         },
         error => {
@@ -55,6 +49,7 @@ export default function Forecast({ city }) {
 
   return (
     <div className="forecast-container">
+      <div className="forecast-title">Hourly Forecast</div>
       <div className="day-row">
         {Object.keys(forecastData).map((day, idx) => (
           <button
