@@ -3,7 +3,7 @@ import './App.css';
 import logo from './mlh-prep.png'
 
 import ItemsNeeded from "./Components/ItemsNeeded";
-import MapBox from "./components/Map/MapBox";
+import MapBox from "./Components/Map/MapBox";
 
 
 function App() {
@@ -101,6 +101,7 @@ function App() {
         <div className="Results">
           {!isLoaded && <h2>Loading...</h2>}
           {isLoaded && results && <>
+            <img src={"http://openweathermap.org/img/w/"+results.weather[0].icon+".png"} alt="Weather icon"/>
             <h3>{results.weather[0].main}</h3>
             <p>Feels like {results.main.feels_like}°C</p>
             <i><p>{results.name}, {results.sys.country}</p></i>
