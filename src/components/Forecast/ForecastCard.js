@@ -10,7 +10,9 @@ const ForecastCard = ({ forecastData, renderForecastCard }) => {
         Object.keys(renderCardData).map((key) => (
           <div className="card-container">
             <p>{key}:00 hours</p>
-            <p className="temp">{Math.round(renderCardData[key].temp - 273.15, 2)}º</p>
+            <p className="temp">
+              {Math.round(renderCardData[key].temp - 273.15, 2)}°C
+            </p>
             <img
               src={`http://openweathermap.org/img/wn/${renderCardData[key].icon}@2x.png`}
             />
