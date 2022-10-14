@@ -4,6 +4,8 @@ import logo from './mlh-prep.png'
 
 import ItemsNeeded from "./Components/ItemsNeeded";
 import MapBox from "./components/Map/MapBox";
+import Sunset from "./components/sunTimings/Sunset";
+import Sunrise from "./components/sunTimings/Sunrise";
 
 
 function App() {
@@ -26,7 +28,6 @@ function App() {
     .then(res => res.json())
     .then(
       (result) => {
-        console.log(result);
           setCity(result[0].name);
         }
     )
@@ -50,7 +51,6 @@ function App() {
             setIsLoaded(false)
           } else {
             setIsLoaded(true);
-            console.log(result)
             setResults(result);
             setCoordinates(result.coord);
             setWeatherType(result.weather[0].main);
@@ -96,6 +96,18 @@ function App() {
           type="text"
           value={city}
           onChange={event => setCity(event.target.value)} />
+
+        <div className="">
+          <div className="container">
+            <Sunrise sunrise={sunrise} timezone={timezone}/>
+          </div>
+
+          <div className="">
+            <Sunset sunset={sunset} timezone={timezone}/>
+          </div>
+        </div>
+
+
         <MapBox 
           coordinates={coordinates} 
           setCoordinates={setCoordinates} 
