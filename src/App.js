@@ -3,8 +3,8 @@ import './App.css';
 import logo from './mlh-prep.png'
 
 import ItemsNeeded from "./Components/ItemsNeeded";
-import MapBox from "./Components/Map/MapBox.js";
-import Places from "./Components/Places/Places";
+import MapBox from "./components/Map/MapBox.js";
+import Places from "./components/Places/Places";
 
 // A timer to help while clearing setTimeout 
 // inside `debouncedSuggestLocations` function.
