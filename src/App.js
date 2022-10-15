@@ -3,7 +3,7 @@ import './App.css';
 import logo from './mlh-prep.png'
 
 import ItemsNeeded from "./Components/ItemsNeeded";
-import MapBox from "./components/Map/MapBox.js";
+import MapBox from "./components/Map/MapBox";
 import Places from "./components/Places/Places";
 
 // A timer to help while clearing setTimeout 
