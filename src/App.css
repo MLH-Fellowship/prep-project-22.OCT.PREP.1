@@ -21,8 +21,8 @@ input {
 
 .Results {
   background-color: transparent;
-  margin-left: 350px;
-  margin-right: 350px;
+  margin: 0 auto;
+  width: 60%;
   margin-top: 40px;
   border-radius: 8px;
   color: white;
@@ -30,7 +30,6 @@ input {
   box-shadow: 1px 2px 3px 4px rgba(12,12,12,0.2);
   backdrop-filter: blur(10px);
 }
-
 
 .places {
   color: #f39c12;
@@ -72,3 +71,14 @@ input {
   background-image: url(./weather_bg_images/Group_7xx_Atmosphere.jpg);
 }
 
+@media (min-width: 768px) {
+  .Results {
+    width: 80%;
+  }  
+}
+
+@media (min-width: 1024px) {
+  .Results {
+    width: 70%;
+  }  
+}
