@@ -32,9 +32,8 @@ function App() {
     .then(res => res.json())
     .then(
       (result) => {
-        console.log(result);
-          setCity(result[0].name);
-        }
+        setCity(result[0].name);
+      }
     )
   }
 
@@ -80,18 +79,19 @@ function App() {
       .then(res => res.json())
       .then(
         (result) => {
+          console.log(result)
           if (result['cod'] !== 200) {
             setIsLoaded(false)
+            setError(result)
           } else {
             setIsLoaded(true);
-            console.log(result)
             setResults(result);
             setCoordinates(result.coord);
             setWeatherType(result.weather[0].main);
           }
         },
         (error) => {
-          setIsLoaded(true);
+          setIsLoaded(false);
           setError(error);
           setWeatherType(error);
         })
@@ -115,8 +115,8 @@ function App() {
         return "haze"
     }
   }
-
-  useEffect(() => {
+  
+   useEffect(() => {
       fetch("https://api.geoapify.com/v2/places?categories=tourism.sights&bias=proximity:" + coordinates.lon + "," + coordinates.lat + "&limit=10&apiKey=" + process.env.REACT_APP_GEOKEY)
         .then(resp => resp.json())
         .then((data) => {
@@ -174,16 +174,20 @@ function App() {
           setError={setError}
           setCity={setCity}
         />
-        <div className="Results">
-          {!isLoaded && <h2>Loading...</h2>}
-          {isLoaded && results && <>
-            <h3>{results.weather[0].main}</h3>
-            <p>Feels like {results.main.feels_like}°C</p>
-            <i><p>{results.name}, {results.sys.country}</p></i>
-            <ItemsNeeded weatherKind={results.weather[0].main}/>
-          </>}
-        </div>
-        <h2>Explore places nearby to <span className="places">{city}</span></h2>
+      <div className="Results">
+        {!isLoaded && error && <h3 style={{color: 'red'}}>{error.message}</h3>}
+        {isLoaded && results && <>
+          <img src={"http://openweathermap.org/img/w/"+results.weather[0].icon+".png"} alt="Weather icon"/>
+          <h3>{results.weather[0].main}</h3>
+          <p>{results.weather[0].description}</p>
+          <p>Feels like {results.main.feels_like}°C</p>
+          <p>Humidity {results.main.humidity}%</p>
+          <i><p>{results.name}, {results.sys.country}</p></i>
+          <ItemsNeeded weatherKind={results.weather[0].main}/>
+        </>}
+      </div>
+      <div>
+       <h2>Explore places nearby to <span className="places">{city}</span></h2>
         {isPlacesLoaded === true ? 
             <Places
               coordinates={coordinates}
@@ -192,9 +196,10 @@ function App() {
           :
            <h2>Loading nearby places!</h2>
         }
+
       </div>
     </div>
-  }
+  </div>
 }
-
+}
 export default App;
