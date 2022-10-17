@@ -1,8 +1,10 @@
 import { useEffect, useState } from "react";
 import "./App.css";
 import logo from "./mlh-prep.png";
+
+import ItemsNeeded from "./components/CarryItems/ItemsNeeded";
 import MapBox from "./components/Map/MapBox";
-import Forecast from "./components/Forecast";
+import Forecast from "./components/Forecast/Forecast";
 
 function App() {
   const [error, setError] = useState(null);
@@ -14,6 +16,7 @@ function App() {
     lon: -74.006,
   });
   const [weatherType, setWeatherType] = useState("");
+  const [filterData, setFilterData] = useState([]);
 
   const findUserLocation = position => {
     const latitude = position.coords.latitude,
@@ -119,11 +122,12 @@ function App() {
                     {results.name}, {results.sys.country}
                   </p>
                 </i>
+                <ItemsNeeded weatherKind={results.weather[0].main} />
               </>
             )}
           </div>
+          <Forecast city={city} />
         </div>
-        <Forecast city={city} />
       </div>
     );
   }
