@@ -12,7 +12,7 @@ import Places from "./components/Places/Places";
 function App() {
   const [error, setError] = useState(null);
   const [isLoaded, setIsLoaded] = useState(false);
-  const [city, setCity] = useState("Kolkata")
+  const [city, setCity] = useState("New York City")
   const [results, setResults] = useState(null);
   const [coordinates, setCoordinates] = useState({
     lat: 40.7143,
