@@ -3,8 +3,8 @@ import './App.css';
 import logo from './mlh-prep.png'
 
 import ItemsNeeded from "./Components/ItemsNeeded";
-import MapBox from "./components/Map/MapBox";
-import Places from "./components/Places/Places";
+import MapBox from "./Components/Map/MapBox.js";
+import Places from "./Components/Places/Places.js";
 
 // A timer to help while clearing setTimeout 
 // inside `debouncedSuggestLocations` function.
@@ -142,9 +142,6 @@ function App() {
         });
   }, [coordinates])
 
-  if (error) {
-    return <div>Error: {error.message}</div>;
-  } else {
     return <div className={"main " + weather(weatherType)}>
       <img className="logo" src={logo} alt="MLH Prep Logo"></img>
       <div>
@@ -200,6 +197,5 @@ function App() {
       </div>
     </div>
   </div>
-}
 }
 export default App;
