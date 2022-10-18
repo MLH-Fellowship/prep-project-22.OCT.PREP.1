@@ -2,10 +2,9 @@ import { useEffect, useState } from "react";
 import "./App.css";
 import logo from "./mlh-prep.png";
 
-import ItemsNeeded from "./components/CarryItems/ItemsNeeded";
-import MapBox from "./components/Map/MapBox";
-import Forecast from "./components/Forecast/Forecast";
-import Places from "./components/Places/Places";
+import ItemsNeeded from "./Components/ItemsNeeded";
+import MapBox from "./comp/Map/MapBox";
+import Places from "./comp/Places/Places";
 
 function App() {
   const [error, setError] = useState(null);
@@ -21,7 +20,7 @@ function App() {
   const [isPlacesLoaded, setIsPlacesLoaded] = useState(false);
   const [weatherType, setWeatherType] = useState("");
 
-  const findUserLocation = position => {
+  const findUserLocation = (position) => {
     const latitude = position.coords.latitude,
       longitude = position.coords.longitude;
     fetch(
@@ -32,13 +31,8 @@ function App() {
         "&limit=5&appid=" +
         process.env.REACT_APP_APIKEY
     )
-      .then(res => res.json())
-      .then(result => {
-        setCity(result[0].name);
-      })
-      .then(res => res.json())
-      .then(result => {
-        console.log(result);
+      .then((res) => res.json())
+      .then((result) => {
         setCity(result[0].name);
       });
   };
@@ -58,9 +52,9 @@ function App() {
         "&units=metric&appid=" +
         process.env.REACT_APP_APIKEY
     )
-      .then(res => res.json())
+      .then((res) => res.json())
       .then(
-        result => {
+        (result) => {
           console.log(result);
           if (result["cod"] !== 200) {
             setIsLoaded(false);
@@ -72,7 +66,7 @@ function App() {
             setWeatherType(result.weather[0].main);
           }
         },
-        error => {
+        (error) => {
           setIsLoaded(false);
           setError(error);
           setWeatherType(error);
@@ -80,7 +74,7 @@ function App() {
       );
   }, [city]);
 
-  const weather = weatherType => {
+  const weather = (weatherType) => {
     switch (weatherType) {
       case "Clouds":
         return "cloudy";
@@ -108,11 +102,11 @@ function App() {
         "&limit=10&apiKey=" +
         process.env.REACT_APP_GEOKEY
     )
-      .then(resp => resp.json())
-      .then(data => {
+      .then((resp) => resp.json())
+      .then((data) => {
         setIsPlacesLoaded(false);
         let tempPlaces = [];
-        data.features.forEach(place => {
+        data.features.forEach((place) => {
           const temp = {
             name: place.properties.name,
             address:
@@ -144,7 +138,7 @@ function App() {
         <input
           type="text"
           value={city}
-          onChange={event => setCity(event.target.value)}
+          onChange={(event) => setCity(event.target.value)}
         />
         <MapBox
           coordinates={coordinates}
@@ -191,7 +185,6 @@ function App() {
           )}
         </div>
       </div>
-      <Forecast city={city} />
     </div>
   );
 }
