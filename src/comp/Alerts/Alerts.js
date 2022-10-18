@@ -1,37 +1,42 @@
 import { useState, useEffect } from "react";
 import "./Alerts.css";
 export default function Alerts({ city }) {
-//   const [forecastData, setForecastData] = useState([]);
-//   const [renderForecastCard, setRenderForecastCard] = useState(0);
-
+  const [alerts, setAlerts] = useState({});
   useEffect(() => {
     fetch(
-      `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${process.env.REACT_APP_APIKEY}`
+      `https://api.weatherbit.io/v2.0/alerts?&city=${city}&key=${process.env.REACT_APP_ALERTKEY}`
     )
-      .then((res) => res.json())
+      .then(res => res.json())
       .then(
-        (result) => {
-          if (result["cod"] === "200") {
-            console.log(result);
-          }
+        result => {
+          console.log("alerts", result);
+          setAlerts(result);
         },
-        (error) => {
+        error => {
           console.log(error);
         }
       );
   }, [city]);
 
-  return (
-    <div className="alerts-wrapper">
-    <div className="alerts-container">
-      <div className="alerts-title">⚠️Severe Weather Alerts</div>
-      <div className="alerts-content">
-        <details>
-          <summary>Alerts title</summary>
-          <p>Alerts description appears here</p>
-        </details>
+  const alertCard =
+    alerts?.alerts?.length > 0 ? (
+      <div className="alerts-wrapper">
+        <div className="alerts-container">
+          <div className="alerts-title">⚠️Severe Weather Alerts</div>
+          <div className="alerts-content">
+            <details>
+              <summary>{alerts.alerts[0].title}</summary>
+              <p>
+                <strong>Impacts:</strong>{" "}
+                {alerts.alerts[0].description.split("IMPACTS...")[1]}
+              </p>
+            </details>
+          </div>
+        </div>
       </div>
-    </div>
-    </div>
-  );
+    ) : (
+      <></>
+    );
+
+  return alertCard;
 }

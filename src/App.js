@@ -2,11 +2,11 @@ import { useEffect, useState } from "react";
 import "./App.css";
 import logo from "./mlh-prep.png";
 
-import ItemsNeeded from "./Components/ItemsNeeded";
+import ItemsNeeded from "./components/ItemsNeeded";
 import MapBox from "./comp/Map/MapBox";
 import Places from "./comp/Places/Places";
 import Alerts from "./comp/Alerts/Alerts";
-
+import Forecast from "./components/Forecast/Forecast";
 // A timer to help while clearing setTimeout
 // inside `debouncedSuggestLocations` function.
 let timerForSuggestedLocations;
