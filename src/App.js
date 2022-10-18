@@ -2,10 +2,10 @@ import { useEffect, useState } from "react";
 import "./App.css";
 import logo from "./mlh-prep.png";
 
-import ItemsNeeded from "./components/CarryItems/ItemsNeeded";
-import MapBox from "./components/Map/MapBox";
-import Forecast from "./components/Forecast/Forecast";
-import Places from "./components/Places/Places";
+import MapBox from "./Components/Map/MapBox";
+import Forecast from "./Components/Forecast/Forecast";
+import Places from "./Components/Places/Places";
+import ResultCard from "./Components/Card/ResultCard"
 
 // A timer to help while clearing setTimeout 
 // inside `debouncedSuggestLocations` function.
@@ -192,33 +192,11 @@ function App() {
           setError={setError}
           setCity={setCity}
         />
-        <div className="Results">
-          {!isLoaded && error && (
-            <h3 style={{ color: "red" }}>{error.message}</h3>
-          )}
-          {isLoaded && results && (
-            <>
-              <img
-                src={
-                  "http://openweathermap.org/img/w/" +
-                  results.weather[0].icon +
-                  ".png"
-                }
-                alt="Weather icon"
-              />
-              <h3>{results.weather[0].main}</h3>
-              <p>{results.weather[0].description}</p>
-              <p>Feels like {results.main.feels_like}°C</p>
-              <p>Humidity {results.main.humidity}%</p>
-              <i>
-                <p>
-                  {results.name}, {results.sys.country}
-                </p>
-              </i>
-              <ItemsNeeded weatherKind={results.weather[0].main} />
-            </>
-          )}
-        </div>
+        <ResultCard 
+          results={results} 
+          isLoaded={isLoaded} 
+          error={error} 
+        />
         <div>
           <h2>
             Explore places nearby to <span className="places">{city}</span>
