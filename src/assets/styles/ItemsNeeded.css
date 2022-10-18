@@ -7,13 +7,14 @@
     padding-top: 0.1%;
     margin:auto;
     width: 40%;
-    background-color: #B1D5FC;
+    background-color: #b8d9fc;
     box-shadow: 6px 3px 6px rgba(0, 0, 0, 0.16), 6px 3px 6px rgba(0, 0, 0, 0.23);
     border-radius: 10px;
 }
 
 .items-card img {
     max-width: 90%;
+    animation: items-card-img 2s ease-out infinite;
 }
 
 .items-card {
@@ -35,5 +36,19 @@
 
     .items-outer-container {
         width: 100%;
+    }
+}
+
+@keyframes items-card-img {
+    0% {
+        transform: scale(1, 1);
+    }
+
+    50% {
+        transform: scale(1.2, 1.2);
+    }
+
+    100% {
+        transform: scale(1, 1);
     }
 }
