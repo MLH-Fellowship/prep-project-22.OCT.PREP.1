@@ -2,10 +2,10 @@ import { useEffect, useState } from "react";
 import "./App.css";
 import logo from "./mlh-prep.png";
 
-import MapBox from "./Components/Map/MapBox";
-import Forecast from "./Components/Forecast/Forecast";
-import Places from "./Components/Places/Places";
-import ResultCard from "./Components/Card/ResultCard"
+import MapBox from "./components/Map/MapBox";
+import Forecast from "./components/Forecast/Forecast";
+import Places from "./components/Places/Places";
+import ResultCard from "./components/Card/ResultCard"
 
 // A timer to help while clearing setTimeout 
 // inside `debouncedSuggestLocations` function.
