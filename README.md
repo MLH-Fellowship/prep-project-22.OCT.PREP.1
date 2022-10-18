@@ -32,12 +32,26 @@ npm install
 
 _You can generate an api key by clicking on this link._
 
-https://openweathermap.org/current
+- REACT_APP_APIKEY
+     - Step 1: Go to this url and sign up. https://openweathermap.org/current
+     - Step 2: Generate the API key in the My API Keys section and add that in .env file.
+- REACT_APP_GEOKEY
+    - Step 1: Go to this url and sign up. https://myprojects.geoapify.com/projects
+    - Step 2: Create a new project and under "Choose a Geoapify API" dropdown select "Places API".
+    ![](/src/assets/img/places.PNG)
+    - Step 3: Add the generated key in .env file.
+- REACT_APP_AUTOCOMPLETE_LOCATION_APIKEY
+    - Step 1: Same as above.
+    - Step 2: Create a new project and under "Choose a Geoapify API" dropdown select "Autocomplete API".
+    ![](/src/assets/img/autocomplete.PNG)
+    - Step 3: Add the generated key in .env file.
 
 Add the following in your `.env` file and replace `Your_Api_Key` with the api key generated
 
 ```
 REACT_APP_APIKEY=Your_Api_Key
+REACT_APP_GEOKEY=Your_Api_Key
+REACT_APP_AUTOCOMPLETE_LOCATION_APIKEY=Your_Api_Key
 ```
 
 - `Step 4`: Start the server.
