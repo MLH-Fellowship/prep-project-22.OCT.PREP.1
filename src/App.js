@@ -3,15 +3,21 @@ import "./App.css";
 import logo from "./mlh-prep.png";
 
 import ItemsNeeded from "./components/CarryItems/ItemsNeeded";
+
 import MapBox from "./components/Map/MapBox";
 import Forecast from "./components/Forecast/Forecast";
 import Places from "./components/Places/Places";
+
+// A timer to help while clearing setTimeout 
+// inside `debouncedSuggestLocations` function.
+let timerForSuggestedLocations;
 
 function App() {
   const [error, setError] = useState(null);
   const [isLoaded, setIsLoaded] = useState(false);
   const [city, setCity] = useState("New York City");
   const [results, setResults] = useState(null);
+  const [suggestedLocation, setSuggestedLocation] = useState([]);
   const [coordinates, setCoordinates] = useState({
     lat: 40.7143,
     lon: -74.006,
@@ -35,14 +41,37 @@ function App() {
       .then(res => res.json())
       .then(result => {
         setCity(result[0].name);
-      })
-      .then(res => res.json())
-      .then(result => {
-        console.log(result);
-        setCity(result[0].name);
-      });
+      }
+    )
+  }
+
+  const suggestLocations = () => {
+    if(!city) return setSuggestedLocation([]);
+
+    fetch(
+      `https://api.geoapify.com/v1/geocode/autocomplete?text=${city}&apiKey=${process.env.REACT_APP_AUTOCOMPLETE_LOCATION_APIKEY}`
+    )
+      .then((res) => res.json())
+      .then((res) => {
+        const ci = [];
+        res.features.forEach((feature, idx) => {
+          ci.push({
+            id: idx,
+            location: feature.properties.formatted
+          });
+        });
+        setSuggestedLocation(ci);
+    });
   };
 
+  const debouncedSuggestLocations = () => {
+    clearTimeout(timerForSuggestedLocations);
+
+    timerForSuggestedLocations = setTimeout(() => {
+      suggestLocations();
+    }, 200);
+  };
+  
   useEffect(() => {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(findUserLocation);
@@ -115,8 +144,7 @@ function App() {
         data.features.forEach(place => {
           const temp = {
             name: place.properties.name,
-            address:
-              place.properties.address_line1 + place.properties.address_line2,
+            address: place.properties.address_line1 + place.properties.address_line2,
             lat: place.properties.lat,
             lon: place.properties.lon,
           };
@@ -142,10 +170,22 @@ function App() {
       <div>
         <h2>Enter a city below 👇 or Click on a location in 🗺</h2>
         <input
+          className="search-city-input"
+          list="locations"
           type="text"
           value={city}
-          onChange={event => setCity(event.target.value)}
+          onChange={event => {setCity(event.target.value);             
+          debouncedSuggestLocations();}}
+          pattern={suggestedLocation.join("|")}
+          autoComplete="off"
         />
+
+        <datalist id="locations">
+            { suggestedLocation.map((loc) => (
+              <option key={loc.id}>{loc.location}</option>
+            ))}
+        </datalist>
+
         <MapBox
           coordinates={coordinates}
           setCoordinates={setCoordinates}
