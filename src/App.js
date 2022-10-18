@@ -2,12 +2,12 @@ import { useEffect, useState } from "react";
 import "./App.css";
 import logo from "./mlh-prep.png";
 
-import ItemsNeeded from "./components/CarryItems/ItemsNeeded";
-import MapBox from "./components/Map/MapBox";
-import Forecast from "./components/Forecast/Forecast";
-import Places from "./components/Places/Places";
+import ItemsNeeded from "./Components/ItemsNeeded";
+import MapBox from "./comp/Map/MapBox";
+import Places from "./comp/Places/Places";
+import Alerts from "./comp/Alerts/Alerts";
 
-// A timer to help while clearing setTimeout 
+// A timer to help while clearing setTimeout
 // inside `debouncedSuggestLocations` function.
 let timerForSuggestedLocations;
 
@@ -40,27 +40,26 @@ function App() {
       .then(res => res.json())
       .then(result => {
         setCity(result[0].name);
-      }
-    )
-  }
+      });
+  };
 
   const suggestLocations = () => {
-    if(!city) return setSuggestedLocation([]);
+    if (!city) return setSuggestedLocation([]);
 
     fetch(
       `https://api.geoapify.com/v1/geocode/autocomplete?text=${city}&apiKey=${process.env.REACT_APP_AUTOCOMPLETE_LOCATION_APIKEY}`
     )
-      .then((res) => res.json())
-      .then((res) => {
+      .then(res => res.json())
+      .then(res => {
         const ci = [];
         res.features.forEach((feature, idx) => {
           ci.push({
             id: idx,
-            location: feature.properties.formatted
+            location: feature.properties.formatted,
           });
         });
         setSuggestedLocation(ci);
-    });
+      });
   };
 
   const debouncedSuggestLocations = () => {
@@ -70,7 +69,7 @@ function App() {
       suggestLocations();
     }, 200);
   };
-  
+
   useEffect(() => {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(findUserLocation);
@@ -143,7 +142,8 @@ function App() {
         data.features.forEach(place => {
           const temp = {
             name: place.properties.name,
-            address: place.properties.address_line1 + place.properties.address_line2,
+            address:
+              place.properties.address_line1 + place.properties.address_line2,
             lat: place.properties.lat,
             lon: place.properties.lon,
           };
@@ -173,16 +173,18 @@ function App() {
           list="locations"
           type="text"
           value={city}
-          onChange={event => {setCity(event.target.value);             
-          debouncedSuggestLocations();}}
+          onChange={event => {
+            setCity(event.target.value);
+            debouncedSuggestLocations();
+          }}
           pattern={suggestedLocation.join("|")}
           autoComplete="off"
         />
 
         <datalist id="locations">
-            { suggestedLocation.map((loc) => (
-              <option key={loc.id}>{loc.location}</option>
-            ))}
+          {suggestedLocation.map(loc => (
+            <option key={loc.id}>{loc.location}</option>
+          ))}
         </datalist>
 
         <MapBox
@@ -231,6 +233,7 @@ function App() {
             <h2>Loading nearby places!</h2>
           )}
         </div>
+        <Alerts city={city} />
       </div>
     </div>
   );
