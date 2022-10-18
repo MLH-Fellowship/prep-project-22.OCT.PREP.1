@@ -5,6 +5,7 @@ import logo from "./mlh-prep.png";
 import ItemsNeeded from "./Components/ItemsNeeded";
 import MapBox from "./comp/Map/MapBox";
 import Places from "./comp/Places/Places";
+import Alerts from "./comp/Alerts/Alerts"
 
 function App() {
   const [error, setError] = useState(null);
@@ -184,6 +185,7 @@ function App() {
             <h2>Loading nearby places!</h2>
           )}
         </div>
+        <Alerts city={city} />
       </div>
     </div>
   );
