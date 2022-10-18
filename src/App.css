@@ -19,6 +19,10 @@ input {
   width: 200px
 }
 
+.search-city-input {
+  width: 250px;
+}
+
 .Results {
   background-color: transparent;
   margin: 0 auto;
