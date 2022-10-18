@@ -5,6 +5,8 @@ import logo from "./mlh-prep.png";
 import ItemsNeeded from "./components/CarryItems/ItemsNeeded";
 
 import MapBox from "./components/Map/MapBox";
+import Sunset from "./components/sunTimings/Sunset";
+import Sunrise from "./components/sunTimings/Sunrise";
 import Forecast from "./components/Forecast/Forecast";
 import Places from "./components/Places/Places";
 
@@ -25,6 +27,9 @@ function App() {
 
   const [places, setPlaces] = useState([]);
   const [isPlacesLoaded, setIsPlacesLoaded] = useState(false);
+  const [sunrise, setSunrise] = useState("")
+  const [sunset, setSunset] = useState("")
+  const [timezone, setTimezone] = useState("")
   const [weatherType, setWeatherType] = useState("");
 
   const findUserLocation = position => {
@@ -99,6 +104,9 @@ function App() {
             setResults(result);
             setCoordinates(result.coord);
             setWeatherType(result.weather[0].main);
+            setSunrise(result.sys.sunrise);
+            setSunset(result.sys.sunset);
+            setTimezone(result.timezone)
           }
         },
         error => {
@@ -126,7 +134,7 @@ function App() {
       default:
         return "haze";
     }
-  };
+  }
 
   useEffect(() => {
     fetch(
@@ -179,6 +187,16 @@ function App() {
           pattern={suggestedLocation.join("|")}
           autoComplete="off"
         />
+
+      <div className="">
+        <div className="container">
+          <Sunrise sunrise={sunrise} timezone={timezone} />
+        </div>
+
+        <div className="">
+          <Sunset sunset={sunset} timezone={timezone} />
+        </div>
+      </div>
 
         <datalist id="locations">
             { suggestedLocation.map((loc) => (
@@ -233,6 +251,5 @@ function App() {
       </div>
       <Forecast city={city} />
     </div>
-  );
-}
+  )};
 export default App;
