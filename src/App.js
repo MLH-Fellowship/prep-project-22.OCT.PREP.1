@@ -219,7 +219,7 @@ function App() {
           <h2>
             Explore places nearby to <span className="places">{city}</span>
           </h2>
-          <Forecast city={city} />
+          <Forecast setError={setError} city={city} />
 
           {isPlacesLoaded === true ? (
             <Places coordinates={coordinates} places={places} />
