@@ -30,7 +30,7 @@ https://nodejs.org/en/download/
 npm install
 ```
 
-- `Step 3`: Create a `.env` file and insert your api key
+- `Step 3`: Create a `.env` file and insert your api key:
 
 _You can generate an api key by clicking on this link._
 
