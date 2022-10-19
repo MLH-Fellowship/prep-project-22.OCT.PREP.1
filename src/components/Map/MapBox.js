@@ -1,5 +1,5 @@
 import "leaflet/dist/leaflet.css";
-import "../../css/Mapbox.css";
+import "../../assets/styles/Mapbox.css";
 import { MapContainer, TileLayer } from 'react-leaflet'
 import LocationMarker from './LocationMarker';
 
