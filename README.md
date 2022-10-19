@@ -64,7 +64,7 @@ REACT_APP_AUTOCOMPLETE_LOCATION_APIKEY=Your_Api_Key
 REACT_APP_ALERTKEY=Your_Api_Key
 ```
 
-- `Step 4`: Start the server.
+- `Step 4`: Start the server:
 
 ```bash
 npm start
