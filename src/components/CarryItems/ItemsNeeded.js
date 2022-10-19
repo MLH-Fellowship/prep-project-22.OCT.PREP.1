@@ -1,6 +1,6 @@
 import "../../assets/styles/ItemsNeeded.css";
 import Mask from "../../assets/img/mask.png";
-import Cap from "../../assets/img/cap.png";
+import Cap from "../../assets/img/cap.gif";
 import Watch from "../../assets/img/watch.png";
 import WaterProofBoots from "../../assets/img/water_proof_boots.png";
 import Jacket from "../../assets/img/jacket.png";
