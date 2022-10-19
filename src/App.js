@@ -2,13 +2,13 @@ import { useEffect, useState } from "react";
 import "./App.css";
 import logo from "./mlh-prep.png";
 
-import ItemsNeeded from "./components/CarryItems/ItemsNeeded";
 import MapBox from "./components/Map/MapBox";
 import Sunset from "./components/sunTimings/Sunset";
 import Sunrise from "./components/sunTimings/Sunrise";
 import Forecast from "./components/Forecast/Forecast";
 import Places from "./components/Places/Places";
-import ResultCard from "./components/Card/ResultCard"
+import ResultCard from "./components/Card/ResultCard";
+import NavBar from "./components/Navbar/Navbar";
 
 // A timer to help while clearing setTimeout 
 // inside `debouncedSuggestLocations` function.
@@ -173,6 +173,8 @@ function App() {
   }, [coordinates]);
 
   return (
+    <>
+    <NavBar />
     <div className={"main " + weather(weatherType)}>
       <img className="logo" src={logo} alt="MLH Prep Logo"></img>
       <div>
@@ -229,5 +231,6 @@ function App() {
       </div>
       <Forecast city={city} />
     </div>
+    </>
   )};
 export default App;
