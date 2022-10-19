@@ -5,12 +5,18 @@ import WeeklyForecastCard from "./WeeklyForecastCard";
 export default function WeeklyForecast({ city }) {
   const [weeklyForecastData, setWeeklyForecastData] = useState([]);
   const [renderWeeklyForecastCard, setRenderWeeklyForecastCard] = useState(0);
+  const [apierror, setApierror] = useState(true);
 
   useEffect(() => {
     fetch(
       `http://api.weatherapi.com/v1/forecast.json?key=${process.env.REACT_APP_WEEKLYFORECASTAPIKEY}&q=${city}&days=7&aqi=yes&alerts=yes`
     )
       .then((res) => {
+        if (res.status == 400 || res.status == 401 || res.status == 403) {
+          setApierror(false);
+          return <h3>Invalid API key</h3>
+        }
+        else if (res.status == 200)
           return res.json()
       })
       .then((result) => {
@@ -43,11 +49,13 @@ export default function WeeklyForecast({ city }) {
   }, [city]);
 
   return (
+    (apierror &&
     <div className="forecast-container">
       <div className="forecast-title">Weekly Forecast</div>
       <div>
         <WeeklyForecastCard weeklyForecastData={weeklyForecastData}/>
       </div>
     </div>
+    )
   );
 }
