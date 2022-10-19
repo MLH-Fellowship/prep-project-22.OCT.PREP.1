@@ -17,7 +17,8 @@ export default function LocationMarker({coordinates, setCoordinates, setResults,
         shadowSize: [41, 41],
     });
 
-    if (isLoaded && results) {
+    if ((!isLoaded && error)) {}
+    else if (isLoaded && results) {
         icon = new L.Icon({
             iconUrl: "http://openweathermap.org/img/w/" + results.weather[0].icon + ".png",
             iconSize: [35, 41],
