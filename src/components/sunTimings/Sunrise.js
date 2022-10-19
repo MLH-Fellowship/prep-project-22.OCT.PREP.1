@@ -1,4 +1,4 @@
-
+import SunriseImg from "../../assets/img/sunrise.png";
 
 export default function Sunrise({sunrise, timezone}) {
 
@@ -19,6 +19,7 @@ export default function Sunrise({sunrise, timezone}) {
     }
 
     return <div className="">
+        <img src={SunriseImg} alt="sunrise"/>
         <h2>Sunrise : {formatTime(sunTimestamp)}</h2>
     </div>
 }
