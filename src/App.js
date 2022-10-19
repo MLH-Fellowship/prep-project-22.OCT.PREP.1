@@ -3,10 +3,9 @@ import "./App.css";
 import logo from "./mlh-prep.png";
 
 import ItemsNeeded from "./components/ItemsNeeded";
-import MapBox from "./comp/Map/MapBox";
-import Places from "./comp/Places/Places";
-import Alerts from "./comp/Alerts/Alerts";
-
+import MapBox from "./components/Map/MapBox";
+import Places from "./components/Places/Places";
+import Alerts from "./components/Alerts/Alerts";
 import Sunset from "./components/sunTimings/Sunset";
 import Sunrise from "./components/sunTimings/Sunrise";
 import Forecast from "./components/Forecast/Forecast";
