@@ -18,7 +18,7 @@ export default function Sunrise({sunrise, timezone}) {
         return formattedTime;
     }
 
-    return <div className="">
+    return <div className="suntime">
         <img src={SunriseImg} alt="sunrise"/>
         <h2>Sunrise : {formatTime(sunTimestamp)}</h2>
     </div>

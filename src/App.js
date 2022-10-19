@@ -188,12 +188,12 @@ function App() {
           autoComplete="off"
         />
 
-      <div className="">
+      <div className="suntimes">
         <div className="container">
           <Sunrise sunrise={sunrise} timezone={timezone} />
         </div>
 
-        <div className="">
+        <div className="container">
           <Sunset sunset={sunset} timezone={timezone} />
         </div>
       </div>

@@ -47,6 +47,30 @@ input {
   width: 100vw;
 }
 
+.suntimes{
+  width: 70%;
+  margin: 5rem auto;
+  display: flex;
+  justify-content: space-between;
+}
+
+.suntime>img{
+  width: 15%;
+  height: 15%;
+}
+
+.suntime{
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  width: 50%;
+  margin: auto;
+  text-align: center;
+  border: white 2px solid;
+  background-color: rgba(252,252,252,0.2);
+  border-radius: 6px;
+}
+
 .drizzly{
   background-image: url(./weather_bg_images/Group_3xx_Drizzle.jpg);
 }
