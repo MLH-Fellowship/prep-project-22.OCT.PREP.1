@@ -210,6 +210,9 @@ function App() {
           setResults={setResults}
           setError={setError}
           setCity={setCity}
+          results={results} 
+          isLoaded={isLoaded} 
+          error={error} 
         />
         <ResultCard 
           results={results} 
