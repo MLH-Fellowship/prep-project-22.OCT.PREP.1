@@ -1,64 +1,53 @@
-.card-wrapper {
-    display: grid;
-    grid-template-columns: auto auto auto auto auto auto;
-    align-items: center;
-    justify-items: center;
-    justify-content: center;
-    width: 90vw;
-  }
-.card-container {
-  margin: 1rem;
-  padding: 1rem;
-  border-radius: 0.5rem;
-  background-image: linear-gradient(-45deg, blue, cyan);
+@import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap');
+/**/
+.wforecast__card__info p {
+  padding: 0;
+  margin: 0;
+}
+
+.wforecast__card__container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  background-color: rgba(55, 55, 55, 0.8);
+  border-radius: 16px;
+  padding: 8px 16px 8px 16px;
+  margin-bottom: 16px;
+}
+
+.wforecast__card__container:last-child {
+  margin-bottom: 0;
+}
+
+.wforecast__card__date {
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.wforecast__card__img {
+  padding-left: 30px;
+  padding-right: 30px;
+}
+
+.wforecast__card__temp {
+  font-family: 'Share Tech Mono', monospace;
+  padding-right: 50px;
+  font-size: 32px;
+}
+
+.wforecast__card__info {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: space-around;
-  background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
-  background-size: 400% 400%;
-  animation: gradient 10s ease infinite;
-  transition: 0.3s linear;
+  text-align: left;
+  font-size: 14px;
 }
-.card-container:hover {
-  background: rgba(255, 255, 255, 0.433);
-  cursor: pointer;
+
+.wforecast__card__info p:first-child {
+  margin-bottom: 5px;
 }
-@keyframes gradient {
-  0% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
-  100% {
-    background-position: 0% 50%;
-  }
-}
-.card-container img {
-  width: 70%;
-  margin: 0;
-}
-.card-container p {
-  margin: 0;
-}
-.temp {
-  font-size: 2.5rem;
+
+.wforecast__card__info p span:first-child {
+  color: gray;
   font-weight: 700;
-  font-family: monospace;
-}
-@media only screen and (max-width: 900px) {
-  .card-wrapper {
-    grid-template-columns: auto auto auto auto;
-  }
-}
-@media only screen and (max-width: 600px) {
-  .card-wrapper {
-    grid-template-columns: auto auto auto;
-  }
-}
-@media only screen and (max-width: 300px) {
-  .card-wrapper {
-    grid-template-columns: auto auto;
-  }
 }

@@ -50,11 +50,9 @@ export default function WeeklyForecast({ city }) {
 
   return (
     (apierror &&
-    <div className="forecast-container">
-      <div className="forecast-title">Weekly Forecast</div>
-      <div>
-        <WeeklyForecastCard weeklyForecastData={weeklyForecastData}/>
-      </div>
+    <div className="wforecast__container">
+      <div className="wforecast__title">Weekly Forecast</div>
+      <WeeklyForecastCard weeklyForecastData={weeklyForecastData}/>
     </div>
     )
   );
