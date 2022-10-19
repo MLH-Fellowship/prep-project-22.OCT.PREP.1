@@ -26,10 +26,7 @@ export default function Alerts({ city }) {
           <div className="alerts-content">
             <details>
               <summary>{alerts.alerts[0].title}</summary>
-              <p>
-                <strong>Impacts:</strong>{" "}
-                {alerts.alerts[0].description.split("IMPACTS...")[1]}
-              </p>
+              <p>{alerts.alerts[0].description}</p>
             </details>
           </div>
         </div>
