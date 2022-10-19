@@ -1,0 +1,36 @@
+.footer {
+    /* display: flex !important; */
+    position: static;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: rgba(7, 39, 55, 0.763);
+    color: white;
+    text-align: left;
+    padding: 10px;
+}
+
+.footer h1 {
+    color: rgb(0, 149, 255);
+}
+
+.row:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+.col-l {
+    float: left;
+    padding: 30px;
+}
+
+.col-r {
+    float: right;
+    width: 48%;
+    padding: 30px;
+}
+
+.col-r a {
+    color: aquamarine;
+}

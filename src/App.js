@@ -7,6 +7,7 @@ import ItemsNeeded from "./components/CarryItems/ItemsNeeded";
 import MapBox from "./components/Map/MapBox";
 import Forecast from "./components/Forecast/Forecast";
 import Places from "./components/Places/Places";
+import Footer from "./components/Footer/Footer";
 
 // A timer to help while clearing setTimeout 
 // inside `debouncedSuggestLocations` function.
@@ -232,6 +233,7 @@ function App() {
         </div>
       </div>
       <Forecast city={city} />
+      <Footer />
     </div>
   );
 }
