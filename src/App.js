@@ -9,6 +9,7 @@ import Sunrise from "./components/sunTimings/Sunrise";
 import Forecast from "./components/Forecast/Forecast";
 import Places from "./components/Places/Places";
 import ResultCard from "./components/Card/ResultCard"
+import WeeklyForecast from "./components/Weekly Forecast/WeeklyForecast";
 
 // A timer to help while clearing setTimeout 
 // inside `debouncedSuggestLocations` function.
@@ -228,6 +229,7 @@ function App() {
         </div>
       </div>
       <Forecast city={city} />
+      <WeeklyForecast city={city}/>
     </div>
   )};
 export default App;

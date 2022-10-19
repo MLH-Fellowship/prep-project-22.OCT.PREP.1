@@ -1,0 +1,49 @@
+.forecast-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+  
+  .days-btn {
+    all: unset;
+    cursor: pointer;
+    border-radius: 100%;
+    margin: 10px 5px;
+    padding: 10px;
+    transition: 0.3s linear;
+    border: 3px solid;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 2rem;
+    width: 2rem;
+    font-family: monospace;
+    font-weight: 700;
+    font-size: 1.5em;
+  }
+  
+  .days-btn:hover {
+    border-color: orangered;
+    color: orangered;
+    background: white;
+    /* transform: scaleY(2px); */
+  }
+  .days-btn:active {
+    background: rgba(255, 68, 0, 0.452);
+  }
+  
+  .day-row {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .forecast-title {
+    font-size: 2rem;
+    margin-top: 2rem;
+  }
+
+  

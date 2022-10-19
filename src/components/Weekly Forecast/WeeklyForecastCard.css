@@ -1,0 +1,64 @@
+.card-wrapper {
+    display: grid;
+    grid-template-columns: auto auto auto auto auto auto;
+    align-items: center;
+    justify-items: center;
+    justify-content: center;
+    width: 90vw;
+  }
+.card-container {
+  margin: 1rem;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  background-image: linear-gradient(-45deg, blue, cyan);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+  background-size: 400% 400%;
+  animation: gradient 10s ease infinite;
+  transition: 0.3s linear;
+}
+.card-container:hover {
+  background: rgba(255, 255, 255, 0.433);
+  cursor: pointer;
+}
+@keyframes gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+.card-container img {
+  width: 70%;
+  margin: 0;
+}
+.card-container p {
+  margin: 0;
+}
+.temp {
+  font-size: 2.5rem;
+  font-weight: 700;
+  font-family: monospace;
+}
+@media only screen and (max-width: 900px) {
+  .card-wrapper {
+    grid-template-columns: auto auto auto auto;
+  }
+}
+@media only screen and (max-width: 600px) {
+  .card-wrapper {
+    grid-template-columns: auto auto auto;
+  }
+}
+@media only screen and (max-width: 300px) {
+  .card-wrapper {
+    grid-template-columns: auto auto;
+  }
+}
