@@ -175,10 +175,50 @@ function App() {
   }, [coordinates]);
 
   return (
-    <>
-      <NavBar />
-      <div className={"main " + weather(weatherType)}>
-        <img className="logo" src={logo} alt="MLH Prep Logo"></img>
+    <div className={"main " + weather(weatherType)}>
+      <img className="logo" src={logo} alt="MLH Prep Logo"></img>
+      <div>
+        <h2>Enter a city below 👇 or Click on a location in 🗺</h2>
+        <input
+          className="search-city-input"
+          list="locations"
+          type="text"
+          value={city}
+          onChange={event => {
+            setCity(event.target.value);
+            debouncedSuggestLocations();
+          }}
+          pattern={suggestedLocation.join("|")}
+          autoComplete="off"
+        />
+      <ResultCard results={results} isLoaded={isLoaded} error={error} />
+      <div className="suntimes">
+        <div className="container">
+          <Sunrise sunrise={sunrise} timezone={timezone} />
+        </div>
+
+        <div className="container">
+          <Sunset sunset={sunset} timezone={timezone} />
+        </div>
+      </div>
+
+        <datalist id="locations">
+          {suggestedLocation.map(loc => (
+            <option key={loc.id}>{loc.location}</option>
+          ))}
+        </datalist>
+
+        <MapBox
+          coordinates={coordinates}
+          setCoordinates={setCoordinates}
+          setResults={setResults}
+          setError={setError}
+          setCity={setCity}
+          results={results} 
+          isLoaded={isLoaded} 
+          error={error} 
+        />
+        <ItemsNeeded weatherKind={results.weather[0].main} />
         <div>
           <div id="searchLocation">
             <h2>Enter a city below 👇 or Click on a location in 🗺</h2>
@@ -239,7 +279,13 @@ function App() {
         </div>
         <Footer />
       </div>
+<<<<<<< HEAD
     </>
+=======
+      {/* <Forecast city={city} /> */}
+      <Footer />
+    </div>
+>>>>>>> Adjust results card location
   );
 }
 export default App;
