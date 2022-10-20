@@ -7,22 +7,36 @@ const ResultCard=({results,isLoaded,error})=>{
     )}
     {isLoaded && results && (
         <>
-        <img
-            src={
-            "http://openweathermap.org/img/w/" +results.weather[0].icon +".png"} alt="Weather icon"
-        />
-        <h3>{results.weather[0].main}</h3>
-        <p>{results.weather[0].description}</p>
-        <p>Feels like {results.main.feels_like}°C</p>
-        <p>Humidity {results.main.humidity}%</p>
-        <i>
-            <p>
-            {results.name}, {results.sys.country}
-            </p>
-        </i>
-        <ItemsNeeded weatherKind={results.weather[0].main} />
+        <div className="results-content">
+            <div className="top-grid">
+                <div>
+                    <i><p>{results.name}, {results.sys.country}</p></i>
+                    <span className="grid-item-text">
+                        {Math.round(results.main.temp)}°C
+                    </span>
+                </div>
+                <div className="bottom-grid">
+                    <span>{results.weather[0].main}
+                    <img
+                        src={
+                        "http://openweathermap.org/img/w/" +results.weather[0].icon +".png"} alt="Weather icon"
+                    /></span>
+                    <span>Feels like: {Math.round(results.main.feels_like)}°C</span>
+                    <span>Humidity: {results.main.humidity}%</span>
+                </div>
+                {/* <div className="grid-item"> */}
+                {/* </div> */}
+            </div>
+            {/* <div className="bottom-grid"> */}
+                {/* <span>Feels like: {Math.round(results.main.feels_like)}°C</span> */}
+                {/* <span>Humidity: {results.main.humidity}%</span> */}
+            {/* </div> */}
+        </div>
+        <div className="results-items">
+            <ItemsNeeded weatherKind={results.weather[0].main} />
+        </div>
         </>
         )}
-    </div> 
+    </div>  
 }
 export default ResultCard;

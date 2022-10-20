@@ -25,15 +25,43 @@ input {
 }
 
 .Results {
+  margin: auto auto;
+  /* display: flex; */
+  /* width: 100%; */
+}
+
+.results-content {
+  margin: 50px auto;
+  width: 80%;
   background-color: transparent;
-  margin: 0 auto;
-  width: 60%;
-  margin-top: 40px;
+  display: inline-grid;
+  font-family: monospace;
+  font-size: 1.5em;
+  /* grid-template-columns: auto auto; */
+  /* width: fit-content; */
+  /* margin: 0 auto; */
+  /* width: 60%; */
+  /* margin-top: 40px; */
   border-radius: 8px;
   color: white;
-  padding: 10px;
+  /* padding: 10px; */
   box-shadow: 1px 2px 3px 4px rgba(12,12,12,0.2);
   backdrop-filter: blur(10px);
+}
+
+.top-grid {
+  display: inline-grid;
+  grid-template-columns: auto auto;
+}
+
+.grid-item-text {
+  font-size: 5em;
+}
+
+.bottom-grid {
+  display: inline-grid;
+  /* align-items: right; */
+  /* grid-template-columns: auto auto; */
 }
 
 .places {
