@@ -4,13 +4,14 @@ import logo from "./mlh-prep.png";
 
 import ItemsNeeded from "./components/CarryItems/ItemsNeeded";
 import MapBox from "./components/Map/MapBox";
+import Places from "./components/Places/Places";
+import Alerts from "./components/Alerts/Alerts";
 import Sunset from "./components/sunTimings/Sunset";
 import Sunrise from "./components/sunTimings/Sunrise";
 import Forecast from "./components/Forecast/Forecast";
-import Places from "./components/Places/Places";
-import ResultCard from "./components/Card/ResultCard"
+import ResultCard from "./components/Card/ResultCard";
 
-// A timer to help while clearing setTimeout 
+// A timer to help while clearing setTimeout
 // inside `debouncedSuggestLocations` function.
 let timerForSuggestedLocations;
 
@@ -27,9 +28,9 @@ function App() {
 
   const [places, setPlaces] = useState([]);
   const [isPlacesLoaded, setIsPlacesLoaded] = useState(false);
-  const [sunrise, setSunrise] = useState("")
-  const [sunset, setSunset] = useState("")
-  const [timezone, setTimezone] = useState("")
+  const [sunrise, setSunrise] = useState("");
+  const [sunset, setSunset] = useState("");
+  const [timezone, setTimezone] = useState("");
   const [weatherType, setWeatherType] = useState("");
 
   const findUserLocation = position => {
@@ -46,27 +47,26 @@ function App() {
       .then(res => res.json())
       .then(result => {
         setCity(result[0].name);
-      }
-    )
-  }
+      });
+  };
 
   const suggestLocations = () => {
-    if(!city) return setSuggestedLocation([]);
+    if (!city) return setSuggestedLocation([]);
 
     fetch(
       `https://api.geoapify.com/v1/geocode/autocomplete?text=${city}&apiKey=${process.env.REACT_APP_AUTOCOMPLETE_LOCATION_APIKEY}`
     )
-      .then((res) => res.json())
-      .then((res) => {
+      .then(res => res.json())
+      .then(res => {
         const ci = [];
         res.features.forEach((feature, idx) => {
           ci.push({
             id: idx,
-            location: feature.properties.formatted
+            location: feature.properties.formatted,
           });
         });
         setSuggestedLocation(ci);
-    });
+      });
   };
 
   const debouncedSuggestLocations = () => {
@@ -76,7 +76,7 @@ function App() {
       suggestLocations();
     }, 200);
   };
-  
+
   useEffect(() => {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(findUserLocation);
@@ -106,7 +106,7 @@ function App() {
             setWeatherType(result.weather[0].main);
             setSunrise(result.sys.sunrise);
             setSunset(result.sys.sunset);
-            setTimezone(result.timezone)
+            setTimezone(result.timezone);
           }
         },
         error => {
@@ -134,7 +134,7 @@ function App() {
       default:
         return "haze";
     }
-  }
+  };
 
   useEffect(() => {
     fetch(
@@ -152,7 +152,8 @@ function App() {
         data.features.forEach(place => {
           const temp = {
             name: place.properties.name,
-            address: place.properties.address_line1 + place.properties.address_line2,
+            address:
+              place.properties.address_line1 + place.properties.address_line2,
             lat: place.properties.lat,
             lon: place.properties.lon,
           };
@@ -182,8 +183,10 @@ function App() {
           list="locations"
           type="text"
           value={city}
-          onChange={event => {setCity(event.target.value);             
-          debouncedSuggestLocations();}}
+          onChange={event => {
+            setCity(event.target.value);
+            debouncedSuggestLocations();
+          }}
           pattern={suggestedLocation.join("|")}
           autoComplete="off"
         />
@@ -199,9 +202,9 @@ function App() {
       </div>
 
         <datalist id="locations">
-            { suggestedLocation.map((loc) => (
-              <option key={loc.id}>{loc.location}</option>
-            ))}
+          {suggestedLocation.map(loc => (
+            <option key={loc.id}>{loc.location}</option>
+          ))}
         </datalist>
 
         <MapBox
@@ -210,24 +213,26 @@ function App() {
           setResults={setResults}
           setError={setError}
           setCity={setCity}
-        />
-        <ResultCard 
           results={results} 
           isLoaded={isLoaded} 
           error={error} 
         />
+        <ResultCard results={results} isLoaded={isLoaded} error={error} />
         <div>
           <h2>
             Explore places nearby to <span className="places">{city}</span>
           </h2>
+          <Forecast setError={setError} city={city} />
+
           {isPlacesLoaded === true ? (
             <Places coordinates={coordinates} places={places} />
           ) : (
             <h2>Loading nearby places!</h2>
           )}
         </div>
+        <Alerts city={city} />
       </div>
-      <Forecast city={city} />
     </div>
-  )};
+  );
+}
 export default App;
