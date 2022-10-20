@@ -3,20 +3,30 @@ import { useEffect, useState } from "react";
 import "leaflet/dist/leaflet.css";
 import { useMap, Marker, Popup, useMapEvent } from 'react-leaflet'
 
-const greenIcon = new L.Icon({
-    iconUrl:
-    'https://img.icons8.com/arcade/64/000000/experimental-marker-arcade.png',
-	iconSize: [35, 41],
-	iconAnchor: [12, 41],
-	popupAnchor: [1, -34],
-	shadowSize: [41, 41],
-});
-
-export default function LocationMarker({coordinates, setCoordinates, setResults, setError, setCity}) {
+export default function LocationMarker({coordinates, setCoordinates, setResults, setError, setCity, results, isLoaded, error}) {
     const [position, setPosition] = useState({
         lat: 40.7143,
         lon: -74.006
     });
+
+    let icon = new L.Icon({
+        iconUrl: 'http://openweathermap.org/img/w/01d.png',
+        iconSize: [35, 41],
+        iconAnchor: [12, 41],
+        popupAnchor: [1, -34],
+        shadowSize: [41, 41],
+    });
+
+    if ((!isLoaded && error)) {}
+    else if (isLoaded && results) {
+        icon = new L.Icon({
+            iconUrl: "http://openweathermap.org/img/w/" + results.weather[0].icon + ".png",
+            iconSize: [35, 41],
+            iconAnchor: [12, 41],
+            popupAnchor: [1, -34],
+            shadowSize: [41, 41],
+        });
+    }
 
     useEffect(()=>{
         if(position != null){
@@ -49,7 +59,7 @@ export default function LocationMarker({coordinates, setCoordinates, setResults,
     });
 
     return coordinates === null ? null : (
-        <Marker position={coordinates} icon={greenIcon}>
+        <Marker position={coordinates} icon={icon}>
             <Popup>You are here</Popup>
         </Marker>
     );
