@@ -47,6 +47,30 @@ input {
   width: 100vw;
 }
 
+.suntimes{
+  width: 70%;
+  margin: 5rem auto;
+  display: flex;
+  justify-content: space-between;
+}
+
+.suntime>img{
+  width: 15%;
+  height: 15%;
+}
+
+.suntime{
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  margin: auto;
+  width: 50%;
+  text-align: center;
+  border: white 2px solid;
+  background-color: rgba(252,252,252,0.2);
+  border-radius: 6px;
+}
+
 .drizzly{
   background-image: url(./weather_bg_images/Group_3xx_Drizzle.jpg);
 }
@@ -85,4 +109,33 @@ input {
   .Results {
     width: 70%;
   }  
+}
+
+@media (max-width: 1300px) {
+  .suntime {
+    width: 75%;
+  }  
+}
+
+@media (max-width: 768px) {
+  .suntime {
+    width: 85%;
+  }  
+}
+
+@media (max-width: 640px) {
+  .suntimes {
+    width: 85%;
+  }
+
+  .suntime {
+    width: 95%;
+  }  
+}
+
+@media (max-width: 460px) {
+  .suntimes {
+    width: 95%;
+    font-size: 0.75rem;
+  }
 }
