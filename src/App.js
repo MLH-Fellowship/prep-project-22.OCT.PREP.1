@@ -191,7 +191,7 @@ function App() {
           pattern={suggestedLocation.join("|")}
           autoComplete="off"
         />
-
+      <ResultCard results={results} isLoaded={isLoaded} error={error} />
       <div className="suntimes">
         <div className="container">
           <Sunrise sunrise={sunrise} timezone={timezone} />
@@ -218,7 +218,7 @@ function App() {
           isLoaded={isLoaded} 
           error={error} 
         />
-        <ResultCard results={results} isLoaded={isLoaded} error={error} />
+        <ItemsNeeded weatherKind={results.weather[0].main} />
         <div>
           <h2>
             Explore places nearby to <span className="places">{city}</span>
@@ -233,7 +233,7 @@ function App() {
         </div>
         <Alerts city={city} />
       </div>
-      <Forecast city={city} />
+      {/* <Forecast city={city} /> */}
       <Footer />
     </div>
   );

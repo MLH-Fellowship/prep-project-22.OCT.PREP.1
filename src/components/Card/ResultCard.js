@@ -32,9 +32,9 @@ const ResultCard=({results,isLoaded,error})=>{
                 {/* <span>Humidity: {results.main.humidity}%</span> */}
             {/* </div> */}
         </div>
-        <div className="results-items">
+        {/* <div className="results-items">
             <ItemsNeeded weatherKind={results.weather[0].main} />
-        </div>
+        </div> */}
         </>
         )}
     </div>  
