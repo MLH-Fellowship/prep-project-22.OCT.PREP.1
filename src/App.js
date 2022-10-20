@@ -243,7 +243,7 @@ function App() {
           isLoaded={isLoaded} 
           error={error} 
         />
-        <ResultCard results={results} isLoaded={isLoaded} error={error} />
+        <ResultCard results={results} isLoaded={isLoaded} error={error} airPollutionResults={airPollutionDetails}/>
         <div>
           <h2>
             Explore places nearby to <span className="places">{city}</span>
