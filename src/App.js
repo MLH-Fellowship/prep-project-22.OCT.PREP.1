@@ -4,6 +4,7 @@ import logo from "./mlh-prep.png";
 
 import MapBox from "./components/Map/MapBox";
 import Places from "./components/Places/Places";
+import Footer from "./components/Footer/Footer";
 import Alerts from "./components/Alerts/Alerts";
 import Sunset from "./components/sunTimings/Sunset";
 import Sunrise from "./components/sunTimings/Sunrise";
@@ -192,15 +193,15 @@ function App() {
             autoComplete="off"
           />
         
-          <div className="">
+          <div className="suntimes">
             <div className="container">
               <Sunrise sunrise={sunrise} timezone={timezone} />
             </div>
 
-            <div className="">
+            <div className="container">
               <Sunset sunset={sunset} timezone={timezone} />
             </div>
-          </div>
+          </div> 
 
           <datalist id="locations">
               { suggestedLocation.map((loc) => (
@@ -238,6 +239,7 @@ function App() {
         </div>
         <Alerts city={city} />
       </div>
+      <Footer />
     </div>
     </>
   );
