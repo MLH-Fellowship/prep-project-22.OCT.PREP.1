@@ -1,0 +1,71 @@
+.footer {
+    /* display: flex !important; */
+    position: static;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: rgba(7, 39, 55, 0.763);
+    color: white;
+    text-align: left;
+    padding: 10px;
+    
+}
+
+.footer h1 {
+    color: rgb(0, 149, 255);
+}
+
+.footer-company-about {
+    color: white;
+    font-size: 18px;
+    font-weight: normal;
+    margin: 0;
+}
+
+.columnSpace {
+    padding: 0 15px 0 15px;
+}
+
+.footer-company-name {
+  color: white;
+  font-size: 14px;
+  font-weight: normal;
+  margin: 0;
+}
+
+.row {
+    display: flex;
+    justify-content: space-around;
+}
+
+.row:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+.col-l {
+    padding: 30px;
+}
+
+.col-r {
+    width: 48%;
+    padding: 30px;
+    font-size: 18px;
+}
+
+.col-r a {
+    text-decoration: none;
+    color: aquamarine;
+}
+
+.footerEnd {
+    text-align: center;
+    width: 100vw;
+}
+
+@media (max-width: 620px) {
+    .row {
+        flex-direction: column;
+    }
+}
