@@ -6,14 +6,16 @@ We're using the [OpenWeather API](https://openweathermap.org/current) to get wea
 
 You'll need to get your own API Key from their website (for free) and add it as an environment variable in a `.env` file. We have a template available as `example.env`.
 
-You'll be using React initially to build this. If you're new to React, check out the [website](https://reactjs.org) for some information on getting started! 
+You'll be using React initially to build this. If you're new to React, check out the [website](https://reactjs.org) for some information on getting started!
 
 ## Project Setup
 
 Follow the steps below to setup the project on your local machine according to the operating system you are using.
 
 ### Windows
+
 #### Using npm
+
 - `Step 1`: Install Node.js and npm
 
 _You can skip this step if you have node installed on your system._
@@ -28,33 +30,41 @@ https://nodejs.org/en/download/
 npm install
 ```
 
-- `Step 3`: Create a `.env` file and insert your api key 
+- `Step 3`: Create a `.env` file and insert your api key:
 
 _You can generate an api key by clicking on this link._
 
 - REACT_APP_APIKEY
-     - Step 1: Go to this url and sign up. https://openweathermap.org/current
-     - Step 2: Generate the API key in the My API Keys section and add that in .env file.
+  - Step 1: Go to this url and sign up. https://openweathermap.org/current
+  - Step 2: Generate the API key in the My API Keys section and add that in .env file.
 - REACT_APP_GEOKEY
-    - Step 1: Go to this url and sign up. https://myprojects.geoapify.com/projects
-    - Step 2: Create a new project and under "Choose a Geoapify API" dropdown select "Places API".
+  - Step 1: Go to this url and sign up. https://myprojects.geoapify.com/projects
+  - Step 2: Create a new project and under "Choose a Geoapify API" dropdown select "Places API".
     ![](/src/assets/img/places.PNG)
-    - Step 3: Add the generated key in .env file.
+  - Step 3: Add the generated key in .env file.
 - REACT_APP_AUTOCOMPLETE_LOCATION_APIKEY
-    - Step 1: Same as above.
-    - Step 2: Create a new project and under "Choose a Geoapify API" dropdown select "Autocomplete API".
-    ![](/src/assets/img/autocomplete.PNG)
-    - Step 3: Add the generated key in .env file.
 
-Add the following in your `.env` file and replace `Your_Api_Key` with the api key generated
+  - Step 1: Same as above.
+  - Step 2: Create a new project and under "Choose a Geoapify API" dropdown select "Autocomplete API".
+    ![](/src/assets/img/autocomplete.PNG)
+  - Step 3: Add the generated key in .env file.
+
+- REACT_APP_ALERTKEY:
+
+  - Sign Up at :https://www.weatherbit.io/
+  - Generate api key
+  - Add this to your env file
+
+  Add the following in your `.env` file and replace `Your_Api_Key` with the api key generated
 
 ```
 REACT_APP_APIKEY=Your_Api_Key
 REACT_APP_GEOKEY=Your_Api_Key
 REACT_APP_AUTOCOMPLETE_LOCATION_APIKEY=Your_Api_Key
+REACT_APP_ALERTKEY=Your_Api_Key
 ```
 
-- `Step 4`: Start the server.
+- `Step 4`: Start the server:
 
 ```bash
 npm start
@@ -63,6 +73,7 @@ npm start
 You can view your project at `http://localhost:3000/`.
 
 #### Using yarn
+
 - `Step 1`: Install Node.js and npm
 
 _You can skip this step if you have node installed on your system._
@@ -86,10 +97,11 @@ npm install --global yarn
 ```bash
 yarn install
 ```
+
 or simply
 
 ```bash
-yarn 
+yarn
 ```
 
 _Note_: The **yarn.lock** may cause issues with the installation of dependencies. If you face this issue, try deleting the **yarn.lock** file and repeat the command above.
