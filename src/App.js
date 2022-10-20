@@ -5,6 +5,7 @@ import logo from "./mlh-prep.png";
 import ItemsNeeded from "./components/CarryItems/ItemsNeeded";
 import MapBox from "./components/Map/MapBox";
 import Places from "./components/Places/Places";
+import Footer from "./components/Footer/Footer";
 import Alerts from "./components/Alerts/Alerts";
 import Sunset from "./components/sunTimings/Sunset";
 import Sunrise from "./components/sunTimings/Sunrise";
@@ -232,6 +233,8 @@ function App() {
         </div>
         <Alerts city={city} />
       </div>
+      <Forecast city={city} />
+      <Footer />
     </div>
   );
 }
