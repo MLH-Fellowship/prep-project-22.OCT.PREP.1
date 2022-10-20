@@ -30,7 +30,7 @@ https://nodejs.org/en/download/
 npm install
 ```
 
-- `Step 3`: Create a `.env` file and insert your api key
+- `Step 3`: Create a `.env` file and insert your api key:
 
 _You can generate an api key by clicking on this link._
 
@@ -61,10 +61,10 @@ _You can generate an api key by clicking on this link._
 REACT_APP_APIKEY=Your_Api_Key
 REACT_APP_GEOKEY=Your_Api_Key
 REACT_APP_AUTOCOMPLETE_LOCATION_APIKEY=Your_Api_Key
-REACT_APP_ALERTKEY=API_KEY=Your_Api_Key
+REACT_APP_ALERTKEY=Your_Api_Key
 ```
 
-- `Step 4`: Start the server.
+- `Step 4`: Start the server:
 
 ```bash
 npm start

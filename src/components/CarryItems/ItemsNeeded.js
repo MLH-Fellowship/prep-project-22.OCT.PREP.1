@@ -1,20 +1,20 @@
-import "../assets/styles/ItemsNeeded.css";
-import Mask from "../assets/img/mask.png";
-import Cap from "../assets/img/cap.png";
-import Watch from "../assets/img/watch.png";
-import WaterProofBoots from "../assets/img/water_proof_boots.png";
-import Jacket from "../assets/img/jacket.png";
-import Gloves from "../assets/img/gloves.png";
-import SunCream from "../assets/img/suncream.png";
-import FlashLight from "../assets/img/flashlight.png";
-import Umbrella from "../assets/img/umbrella.png";
-import Scarf from "../assets/img/scarf.png";
-import SunGlasses from "../assets/img/sunglasses.png";
-import Goggles from "../assets/img/goggles.png";
-import RainCoat from "../assets/img/raincoat.png";
+import "../../assets/styles/ItemsNeeded.css";
+import Mask from "../../assets/img/mask.png";
+import Cap from "../../assets/img/cap.gif";
+import Watch from "../../assets/img/watch.png";
+import WaterProofBoots from "../../assets/img/water_proof_boots.png";
+import Jacket from "../../assets/img/jacket.png";
+import Gloves from "../../assets/img/gloves.png";
+import SunCream from "../../assets/img/suncream.png";
+import FlashLight from "../../assets/img/flashlight.png";
+import Umbrella from "../../assets/img/umbrella.png";
+import Scarf from "../../assets/img/scarf.png";
+import SunGlasses from "../../assets/img/sunglasses.png";
+import Goggles from "../../assets/img/goggles.png";
+import RainCoat from "../../assets/img/raincoat.png";
 
 const ItemsNeeded = ({ weatherKind }) => {
-  const getCarryItems = (x) => {
+  const getCarryItems = x => {
     if (x === "Rain") return [RainCoat, Umbrella, WaterProofBoots];
     if (x === "Snow") return [SunGlasses, Scarf, Jacket, Gloves];
     if (x === "Clear") return [Cap, SunCream, SunGlasses];

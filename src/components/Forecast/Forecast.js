@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import "./Forecast.css";
 import ForecastCard from "./ForecastCard";
-export default function Forecast({ city }) {
+export default function Forecast({ city, setError }) {
   const [forecastData, setForecastData] = useState([]);
   const [renderForecastCard, setRenderForecastCard] = useState(0);
 
@@ -39,7 +39,11 @@ export default function Forecast({ city }) {
         error => {
           console.log(error);
         }
-      );
+      )
+      .catch(err => {
+        setError(err);
+        console.log(err);
+      });
   }, [city]);
 
   const handleDateClick = (e, idx) => {
