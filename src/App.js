@@ -192,15 +192,15 @@ function App() {
           autoComplete="off"
         />
 
-      <div className="suntimes">
-        <div className="container">
-          <Sunrise sunrise={sunrise} timezone={timezone} />
-        </div>
+        <div className="suntimes">
+          <div className="container">
+            <Sunrise sunrise={sunrise} timezone={timezone} />
+          </div>
 
-        <div className="container">
-          <Sunset sunset={sunset} timezone={timezone} />
+          <div className="container">
+            <Sunset sunset={sunset} timezone={timezone} />
+          </div>
         </div>
-      </div>
 
         <datalist id="locations">
           {suggestedLocation.map(loc => (
@@ -214,9 +214,9 @@ function App() {
           setResults={setResults}
           setError={setError}
           setCity={setCity}
-          results={results} 
-          isLoaded={isLoaded} 
-          error={error} 
+          results={results}
+          isLoaded={isLoaded}
+          error={error}
         />
         <ResultCard results={results} isLoaded={isLoaded} error={error} />
         <div>
@@ -233,7 +233,6 @@ function App() {
         </div>
         <Alerts city={city} />
       </div>
-      <Forecast city={city} />
       <Footer />
     </div>
   );
