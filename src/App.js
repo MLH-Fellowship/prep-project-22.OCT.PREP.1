@@ -42,6 +42,7 @@ function App() {
     pm10: 0.0,
     nh3: 0.0
   });
+  const [aqi, setAqi] = useState(0);    // aqi stands for air quality index
 
   const findUserLocation = position => {
     const latitude = position.coords.latitude,
@@ -138,7 +139,9 @@ function App() {
     )
       .then(res => res.json())
       .then(result => {
-        setAirPollutionDetails(result.list[0].components)
+        console.log(result);
+        setAqi(result.list[0].main.aqi);
+        setAirPollutionDetails(result.list[0].components);
         console.log("airpollution", airPollutionDetails);
       });
   }, [coordinates]);
@@ -243,7 +246,7 @@ function App() {
           isLoaded={isLoaded} 
           error={error} 
         />
-        <ResultCard results={results} isLoaded={isLoaded} error={error} airPollutionResults={airPollutionDetails}/>
+        <ResultCard results={results} isLoaded={isLoaded} error={error} airPollutionResults={airPollutionDetails} aqi={aqi}/>
         <div>
           <h2>
             Explore places nearby to <span className="places">{city}</span>

@@ -1,0 +1,39 @@
+.Results {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.Results .container {
+    display: inline-flex;
+    flex-direction: column;
+    background-color: rgba(50, 50, 50, 0.6);
+    border-radius: 25px;
+    padding: 16px;
+}
+
+.Results img {
+    width: 85px;
+}
+
+.Results .container__img {
+    border-bottom: 2px solid white;
+}
+
+.Results .container__info {
+    text-align: left;
+    margin-top: 16px;
+}
+
+.Results p {
+    padding: 0;
+    margin: 0;
+}
+
+.Results p {
+    margin-bottom: 7.5px;
+}
+
+.Results p:first-child {
+    font-weight: 700;
+}
