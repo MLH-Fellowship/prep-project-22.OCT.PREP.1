@@ -37,7 +37,10 @@ const Footer = () => {
                                 <td className="columnSpace">Riffat Khan</td>
                             </tr>
                             <tr>
+                                <td className="columnSpace">Siddhi Bhanushali</td>
                                 <td className="columnSpace">Sudanshu Kumar</td>
+                            </tr>
+                            <tr>
                                 <td className="columnSpace">Swatishree Mahapatra</td>
                             </tr>
                             </table>
@@ -45,9 +48,9 @@ const Footer = () => {
                     </div>
                     <div className="col-r">
                         <h1>Our Portfolio</h1>
-                        <ul>Check out detailed information about our Pod and its members in our <a href="https://prep-portfolio-22-oct-prep-1.netlify.app/">Portfolio site</a>!</ul>
+                        <ul>Check out detailed information about our Pod and its members in our <a href="https://prep-portfolio-22-oct-prep-1.netlify.app/" target="_blank" rel="noreferrer noopener">Portfolio site</a>!</ul>
                         <h1>Contribute!</h1>
-                        <ul>Have an idea to improve this weather app? Contribute <a href="https://github.com/MLH-Fellowship/prep-project-22.OCT.PREP.1">here</a>!</ul>
+                        <ul>Have an idea to improve this weather app? Contribute <a href="https://github.com/MLH-Fellowship/prep-project-22.OCT.PREP.1" target="_blank" rel="noreferrer noopener">here</a>!</ul>
                     </div>
                 </div>
                 <div className="footerEnd">
