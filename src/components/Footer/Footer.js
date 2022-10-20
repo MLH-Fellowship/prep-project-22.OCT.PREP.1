@@ -7,21 +7,41 @@ const Footer = () => {
             <footer className="footer">
                 <div className="row">
                     <div className="col-l">
-                        <h1>Pod Members</h1>
-                        <ul>Akanksha Kushwaha</ul>
-                        <ul>Bhavneet Kaur</ul>
-                        <ul>Deepayan Mukherjee</ul>
-                        <ul>Devansu Yadav</ul>
-                        <ul>Divya Sri Darimisetti</ul>
-                        <ul>Gaurav Gulati</ul>
-                        <ul>Kanchi Tank</ul>
-                        <ul>Lavisha Bhambri</ul>
-                        <ul>Neelaksh Singh</ul>
-                        <ul>Moses Varghese</ul>
-                        <ul>Niyoj Oli</ul>
-                        <ul>Riffat Khan</ul>
-                        <ul>Sudanshu Kumar</ul>
-                        <ul>Swatishree Mahapatra</ul>
+                        <p class="footer-company-about">
+                            <span>
+                            <h1>Web Whales Members</h1>
+                            </span>
+                            <table>
+                            <tr>
+                                <td className="columnSpace">Akanksha Kushwaha</td>
+                                <td className="columnSpace" >Bhavneet Kaur</td>
+                            </tr>
+                            <tr>
+                                <td className="columnSpace">Deepayan Mukherjee</td>
+                                <td className="columnSpace">Devansu Yadav</td>
+                            </tr>
+                            <tr>
+                                <td className="columnSpace">Divya Sri Darimisetti</td>
+                                <td className="columnSpace">Gaurav Gulati</td>
+                            </tr>
+                            <tr>
+                                <td className="columnSpace">Kanchi Tank</td>
+                                <td className="columnSpace">Lavisha Bhambri</td>
+                            </tr>
+                            <tr>
+                                <td className="columnSpace">Neelaksh Singh</td>
+                                <td className="columnSpace">Moses Varghese</td>
+                            </tr>
+                            <tr>
+                                <td className="columnSpace">Niyoj Oli</td>
+                                <td className="columnSpace">Riffat Khan</td>
+                            </tr>
+                            <tr>
+                                <td className="columnSpace">Sudanshu Kumar</td>
+                                <td className="columnSpace">Swatishree Mahapatra</td>
+                            </tr>
+                            </table>
+                        </p>
                     </div>
                     <div className="col-r">
                         <h1>Our Portfolio</h1>
@@ -29,6 +49,9 @@ const Footer = () => {
                         <h1>Contribute!</h1>
                         <ul>Have an idea to improve this weather app? Contribute <a href="https://github.com/MLH-Fellowship/prep-project-22.OCT.PREP.1">here</a>!</ul>
                     </div>
+                </div>
+                <div className="footerEnd">
+                    Web Whales, MLH Prep Fall © 2022
                 </div>
             </footer>
         </>
