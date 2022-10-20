@@ -1,9 +1,7 @@
 .wrapper {
     width: 100%;
     background-color: #0e5fd1;
-    font-family: "Poppins", serif;
     font-weight: 700 !important;
-    padding-top: 20px;
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
@@ -13,9 +11,8 @@
     overflow: hidden;
     z-index: 10000;
     top: 0;
-    padding:1rem;
   }
-  .links {
+  .links{
     display: flex;
     width: 100%;
     justify-content: space-evenly;
@@ -38,7 +35,6 @@
   .links a,
   .menu,
   .link a {
-    font-family: "Poppins", serif;
     font-weight: 700 !important;
     color: white;
     text-decoration: none;
@@ -49,7 +45,9 @@
   .link a:hover {
     color: #000;
   }
-  
+  .nav-active{
+    color: #000!important;
+  }
   
   .link {
     width: 100vw;
