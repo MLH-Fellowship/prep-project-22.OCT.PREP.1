@@ -95,7 +95,6 @@ function App() {
             lon: place.properties.lon
           });
         });
-      // console.log(restaurants);
       setNearbyRestaurants(restaurants);
       setIsPlacesLoaded(true);
     });
@@ -175,7 +174,6 @@ function App() {
         let tempPlaces = [];
         data.features.forEach(place => {
           const temp = {
-            type: "place",
             name: place.properties.name,
             address:
               place.properties.address_line1 + place.properties.address_line2,
@@ -187,7 +185,6 @@ function App() {
         tempPlaces = [
           ...tempPlaces,
           {
-            type: "place",
             name: "Your Location",
             address: "You are here!",
             lat: coordinates.lat,
