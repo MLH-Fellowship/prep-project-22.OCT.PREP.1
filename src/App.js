@@ -32,6 +32,16 @@ function App() {
   const [sunset, setSunset] = useState("");
   const [timezone, setTimezone] = useState("");
   const [weatherType, setWeatherType] = useState("");
+  const [airPollutionDetails, setAirPollutionDetails] = useState({
+    co: 0.0,
+    no: 0.0,
+    no2: 0.0,
+    o3: 0.0,
+    so2: 0.0,
+    pm2_5: 0.0,
+    pm10: 0.0,
+    nh3: 0.0
+  });
 
   const findUserLocation = position => {
     const latitude = position.coords.latitude,
