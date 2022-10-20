@@ -57,11 +57,17 @@ _You can generate an api key by clicking on this link._
 
   Add the following in your `.env` file and replace `Your_Api_Key` with the api key generated
 
+- REACT_APP_WEEKLYFORECASTAPIKEY
+    - Step 1: Go to this url and sign up. https://www.weatherapi.com/
+    - Step 2: Login into the account with the credentials & switch to the "Accounts" section on the left navbar.
+    - Step 3: Add the generated key in .env file.
+
 ```
 REACT_APP_APIKEY=Your_Api_Key
 REACT_APP_GEOKEY=Your_Api_Key
 REACT_APP_AUTOCOMPLETE_LOCATION_APIKEY=Your_Api_Key
 REACT_APP_ALERTKEY=Your_Api_Key
+REACT_APP_WEEKLYFORECASTAPIKEY=Your_Api_Key
 ```
 
 - `Step 4`: Start the server:
