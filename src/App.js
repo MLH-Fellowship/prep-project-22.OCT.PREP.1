@@ -127,6 +127,22 @@ function App() {
       );
   }, [city]);
 
+  useEffect(() => {
+    fetch(
+      "http://api.openweathermap.org/data/2.5/air_pollution?lat=" +
+        coordinates.lat +
+        "&lon=" +
+        coordinates.lon +
+        "&appid=" +
+        process.env.REACT_APP_APIKEY
+    )
+      .then(res => res.json())
+      .then(result => {
+        setAirPollutionDetails(result.list[0].components)
+        console.log("airpollution", airPollutionDetails);
+      });
+  }, [coordinates]);
+
   const weather = weatherType => {
     switch (weatherType) {
       case "Clouds":
