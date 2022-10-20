@@ -33,6 +33,7 @@ function App() {
   const [sunset, setSunset] = useState("");
   const [timezone, setTimezone] = useState("");
   const [weatherType, setWeatherType] = useState("");
+  const [restaurant, setRestaurant] = useState([]);
 
   const findUserLocation = position => {
     const latitude = position.coords.latitude,
@@ -78,6 +79,20 @@ function App() {
     }, 200);
   };
 
+  const searchNearbyRestaurants = () => {
+    fetch(`https://api.geoapify.com/v2/places?categories=catering.restaurant,catering.cafe&filter=circle:-${coordinates.lon},${coordinates.lat}&bias=proximity:-${coordinates.lon},${coordinates.lat}&limit=20&apiKey=${process.env.REACT_APP_PLACES}`)
+    .then(res => res.json())
+    .then((res) => {
+      const ci = [];
+      // for debugging
+        res.forEach((item) => {
+          ci.push(item.type);
+        });
+        setRestaurant(ci);
+      console.log(ci);
+    });
+  }
+  
   useEffect(() => {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(findUserLocation);
@@ -238,6 +253,13 @@ function App() {
           <Alerts city={city} />
         </div>
         <Footer />
+        <Alerts city={city} />
+
+        {searchNearbyRestaurants}
+        {restaurant}
+        {/* { restaurant.map(() => (
+              <p>{restaurant}</p>
+            ))} */}
       </div>
     </>
   );
