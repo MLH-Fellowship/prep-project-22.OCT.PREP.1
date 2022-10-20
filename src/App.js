@@ -33,7 +33,8 @@ function App() {
   const [sunset, setSunset] = useState("");
   const [timezone, setTimezone] = useState("");
   const [weatherType, setWeatherType] = useState("");
-  const [restaurant, setRestaurant] = useState([]);
+  const [nearbyRestaurants, setNearbyRestaurants] = useState([]);
+  const restaurantSearchRadius = 10000; // To suggest nearby restaurants within this radius.
 
   const findUserLocation = position => {
     const latitude = position.coords.latitude,
@@ -80,16 +81,23 @@ function App() {
   };
 
   const searchNearbyRestaurants = () => {
-    fetch(`https://api.geoapify.com/v2/places?categories=catering.restaurant,catering.cafe&filter=circle:-${coordinates.lon},${coordinates.lat}&bias=proximity:-${coordinates.lon},${coordinates.lat}&limit=20&apiKey=${process.env.REACT_APP_PLACES}`)
+    fetch(`https://api.geoapify.com/v2/places?categories=catering.restaurant,catering.cafe&filter=circle:${coordinates.lon},${coordinates.lat},${restaurantSearchRadius}&bias=proximity:${coordinates.lon},${coordinates.lat}&limit=20&apiKey=${process.env.REACT_APP_GEOKEY}`)
     .then(res => res.json())
     .then((res) => {
-      const ci = [];
-      // for debugging
-        res.forEach((item) => {
-          ci.push(item.type);
+      setIsPlacesLoaded(false);
+      const restaurants = [];
+        res.features.forEach((place) => {
+          restaurants.push({
+            type: "restaurant",
+            name: place.properties.name,
+            address: place.properties.address_line1 + place.properties.address_line2,
+            lat: place.properties.lat,
+            lon: place.properties.lon
+          });
         });
-        setRestaurant(ci);
-      console.log(ci);
+      // console.log(restaurants);
+      setNearbyRestaurants(restaurants);
+      setIsPlacesLoaded(true);
     });
   }
   
@@ -167,6 +175,7 @@ function App() {
         let tempPlaces = [];
         data.features.forEach(place => {
           const temp = {
+            type: "place",
             name: place.properties.name,
             address:
               place.properties.address_line1 + place.properties.address_line2,
@@ -178,6 +187,7 @@ function App() {
         tempPlaces = [
           ...tempPlaces,
           {
+            type: "place",
             name: "Your Location",
             address: "You are here!",
             lat: coordinates.lat,
@@ -187,6 +197,8 @@ function App() {
         setPlaces(tempPlaces);
         setIsPlacesLoaded(true);
       });
+
+      searchNearbyRestaurants();
   }, [coordinates]);
 
   return (
@@ -226,40 +238,37 @@ function App() {
               ))}
             </datalist>
 
-            <MapBox
-              coordinates={coordinates}
-              setCoordinates={setCoordinates}
-              setResults={setResults}
-              setError={setError}
-              setCity={setCity}
-            />
-          </div>
-          <div id="displayResults">
-            <ResultCard results={results} isLoaded={isLoaded} error={error} />
-          </div>
-          <div id="explorePlaces">
-            <h2>
-              Explore places nearby to <span className="places">{city}</span>
-            </h2>
-            {isPlacesLoaded === true ? (
-              <Places coordinates={coordinates} places={places} />
-            ) : (
-              <h2>Loading nearby places!</h2>
-            )}
-          </div>
-          <div id="hourlyForecast">
-            <Forecast setError={setError} city={city} />
-          </div>
-          <Alerts city={city} />
+          <MapBox
+            coordinates={coordinates}
+            setCoordinates={setCoordinates}
+            setResults={setResults}
+            setError={setError}
+            setCity={setCity}
+          />
+        </div>
+        <div id ="displayResults">
+          <ResultCard 
+            results={results} 
+            isLoaded={isLoaded} 
+            error={error} 
+          />
+        </div>
+        <div id="explorePlaces">
+          <h2>
+            Explore places nearby to <span className="places">{city}</span>
+          </h2>
+          {isPlacesLoaded === true ? (
+            <Places coordinates={coordinates} places={[...places, ...nearbyRestaurants]} />
+          ) : (
+            <h2>Loading nearby places!</h2>
+          )}
+        </div>
+        <div id="hourlyForecast">
+          <Forecast setError={setError} city={city} />
+        </div>
         </div>
         <Footer />
         <Alerts city={city} />
-
-        {searchNearbyRestaurants}
-        {restaurant}
-        {/* { restaurant.map(() => (
-              <p>{restaurant}</p>
-            ))} */}
       </div>
     </>
   );
