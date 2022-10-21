@@ -14,6 +14,7 @@ export default function WeeklyForecast({ city }) {
       .then((res) => {
         if (res.status == 400 || res.status == 401 || res.status == 403) {
           setApierror(false);
+          console.log(res.status);
           return <h3>Invalid API key</h3>
         }
         else if (res.status == 200)

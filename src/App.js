@@ -238,7 +238,6 @@ function App() {
           </div>
           <Alerts city={city} />
         </div>
-      <Forecast city={city} />
       <WeeklyForecast city={city}/>
       <Footer />
     </div>
