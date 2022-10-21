@@ -2,14 +2,16 @@ import "../../App.css";
 import ItemsNeeded from "../CarryItems/ItemsNeeded";
 import "./ResultCard.css";
 
-const ResultCard=({results,isLoaded,error,airPollutionResults,aqi})=>{
+const ResultCard=({results,isLoaded,error,aqi})=>{
     let aqiWord = "Very Good";
+    console.log("aqi: "+aqi);
+    if (parseInt(aqi) === 1) aqiWord = "Good";
+    if (parseInt(aqi) === 2) aqiWord = "Fair";
+    if (parseInt(aqi) === 3) aqiWord = "Moderate";
+    if (parseInt(aqi) === 4) aqiWord = "Poor";
+    if (parseInt(aqi) === 5) aqiWord = "Very Poor";
 
-    if (aqi == 1) aqiWord = "Good";
-    if (aqi == 2) aqiWord = "Fair";
-    if (aqi == 3) aqiWord = "Moderate";
-    if (aqi == 4) aqiWord = "Poor";
-    if (aqi == 5) aqiWord = "Very Poor";
+    if (aqiWord == "Very Good") return (<span>ERROR</span>);
 
    return <div className="Results">
     {!isLoaded && error && (

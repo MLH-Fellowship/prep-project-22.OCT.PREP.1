@@ -43,7 +43,7 @@ function App() {
     pm10: 0.0,
     nh3: 0.0
   });
-  const [aqi, setAqi] = useState(0);    // aqi stands for air quality index
+  const [aqi, setAqi] = useState(1);    // aqi stands for air quality index
 
   const findUserLocation = position => {
     const latitude = position.coords.latitude,
@@ -140,10 +140,8 @@ function App() {
     )
       .then(res => res.json())
       .then(result => {
-        console.log(result);
         setAqi(result.list[0].main.aqi);
         setAirPollutionDetails(result.list[0].components);
-        console.log("airpollution", airPollutionDetails);
       });
   }, [coordinates]);
 
@@ -247,31 +245,9 @@ function App() {
           />
         </div>
         <div id ="displayResults">
-          <ResultCard 
-            results={results} 
-            isLoaded={isLoaded} 
-            error={error} 
-          />
+        <ResultCard results={results} isLoaded={isLoaded} error={error} airPollutionResults={airPollutionDetails} aqi={aqi}/>
         </div>
       </div>
-
-        <datalist id="locations">
-          {suggestedLocation.map(loc => (
-            <option key={loc.id}>{loc.location}</option>
-          ))}
-        </datalist>
-
-        <MapBox
-          coordinates={coordinates}
-          setCoordinates={setCoordinates}
-          setResults={setResults}
-          setError={setError}
-          setCity={setCity}
-          results={results} 
-          isLoaded={isLoaded} 
-          error={error} 
-        />
-        <ResultCard results={results} isLoaded={isLoaded} error={error} airPollutionResults={airPollutionDetails} aqi={aqi}/>
         <div>
         <div id="explorePlaces">
           <h2>
