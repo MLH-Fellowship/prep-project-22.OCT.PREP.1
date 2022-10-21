@@ -97,6 +97,11 @@ function App() {
         });
       setNearbyRestaurants(restaurants);
       setIsPlacesLoaded(true);
+    })
+    .catch((err) => {
+        setIsLoaded(false);
+        setIsPlacesLoaded(false);
+        setError(err);
     });
   }
   
