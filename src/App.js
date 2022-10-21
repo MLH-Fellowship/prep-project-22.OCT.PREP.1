@@ -205,7 +205,7 @@ function App() {
 
   return (
     <>
-    <NavBar />
+     <NavBar />
     <div className={"main " + weather(weatherType)}>
       <img className="logo" src={logo} alt="MLH Prep Logo"></img>
       <div>

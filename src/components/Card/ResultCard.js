@@ -33,18 +33,6 @@ const ResultCard=({results,isLoaded,error,airPollutionResults,aqi})=>{
         <div>
             <ItemsNeeded weatherKind={results.weather[0].main} />
         </div>
-
-        <div className="container">
-            <h3>Air Pollution Details</h3>
-            <p> CO: {airPollutionResults.co}</p>
-            <p> NO: {airPollutionResults.no}</p>
-            <p> NO2: {airPollutionResults.no2}</p>
-            <p> O3: {airPollutionResults.o3}</p>
-            <p> SO2: {airPollutionResults.so2}</p>
-            <p> PM2_5: {airPollutionResults.pm2_5}</p>
-            <p> PM10: {airPollutionResults.pm10}</p>
-            <p> NH3: {airPollutionResults.nh3}</p>
-        </div>
         
         <div className="container">
             <h3>Air Quality</h3>
