@@ -220,10 +220,10 @@ function App() {
         />
         <ResultCard results={results} isLoaded={isLoaded} error={error} />
         <div>
+          <Forecast setError={setError} city={city} />
           <h2>
             Explore places nearby to <span className="places">{city}</span>
           </h2>
-          <Forecast setError={setError} city={city} />
 
           {isPlacesLoaded === true ? (
             <Places coordinates={coordinates} places={places} />
