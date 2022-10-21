@@ -16,6 +16,7 @@
     animation: gradient 10s ease infinite;
     transition: 0.3s linear;
     backdrop-filter: blur(10px);
+    padding-bottom: 10px;
 }
   
 .grid {
