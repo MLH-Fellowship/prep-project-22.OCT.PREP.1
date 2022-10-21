@@ -1,23 +1,20 @@
-.card-wrapper {
-  display: grid;
-  grid-template-columns: auto auto auto auto auto auto;
-  align-items: center;
-  justify-items: center;
-  justify-content: center;
+.card-wrapper{
+  overflow-x: auto;
   width: 90vw;
+  display: block;
+  white-space: nowrap;
 }
 .card-container {
   margin: 1rem;
   padding: 1rem;
   border-radius: 0.5rem;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-around;
+  display: inline-block;
   background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
   background-size: 400% 400%;
   animation: gradient 10s ease infinite;
   transition: 0.3s linear;
+  flex-shrink: 0;
+  height:100%;
 }
 .card-container:hover {
   background: rgba(255, 255, 255, 0.433);
@@ -60,4 +57,28 @@
   .card-wrapper {
     grid-template-columns: auto auto;
   }
+}
+
+/* scrollbar */
+/* width */
+.card-wrapper::-webkit-scrollbar {
+  width: 7px;
+}
+
+/* Track */
+.card-wrapper::-webkit-scrollbar-track {
+  border-radius: 10px;
+  background:orangered;
+  border:6px solid white;
+}
+ 
+/* Handle */
+.card-wrapper::-webkit-scrollbar-thumb {
+  background: white; 
+  border-radius: 10px;
+}
+
+/* Handle on hover */
+.card-wrapper::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 68, 0, 0.46); 
 }
