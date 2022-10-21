@@ -22,15 +22,26 @@ const greenMarker = new L.Icon({
 	shadowSize: [41, 41],
 });
 
+const restaurantMarker = new L.Icon({
+	iconUrl:
+		'https://cdn.jsdelivr.net/gh/pointhi/leaflet-color-markers@master/img/marker-icon-2x-violet.png',
+	shadowUrl:
+		'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
+	iconSize: [25, 41],
+	iconAnchor: [12, 41],
+	popupAnchor: [1, -34],
+	shadowSize: [41, 41],
+});
+
 export default function PlaceMarker({coordinates, places}) {
     const map = useMap();
 
     map.setView(coordinates);
 
-    return places.map((place)=>{
+    return places.map((place, idx)=>{
         if(place.lat===coordinates.lat && place.lon===coordinates.lon){
             return (
-                <Marker position={[place.lat, place.lon]} icon={defaultMarker}>
+                <Marker key={idx} position={[place.lat, place.lon]} icon={defaultMarker}>
                     <Popup>
                         <h4>{place.name}</h4>
                         <p>{place.address}</p>
@@ -39,7 +50,7 @@ export default function PlaceMarker({coordinates, places}) {
             )
         } else {
             return (
-                <Marker position={[place.lat, place.lon]} icon={greenMarker}>
+                <Marker key={idx} position={[place.lat, place.lon]} icon={place.type === "restaurant"? restaurantMarker: greenMarker}>
                     <Popup>
                         <h1>{place.name}</h1>
                         <h2>Address</h2>
