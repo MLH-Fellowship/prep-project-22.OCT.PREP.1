@@ -1,0 +1,53 @@
+@import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap');
+/**/
+.wforecast__card__info p {
+  padding: 0;
+  margin: 0;
+}
+
+.wforecast__card__container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  background-color: rgba(55, 55, 55, 0.8);
+  border-radius: 16px;
+  padding: 8px 16px 8px 16px;
+  margin-bottom: 16px;
+}
+
+.wforecast__card__container:last-child {
+  margin-bottom: 0;
+}
+
+.wforecast__card__date {
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.wforecast__card__img {
+  padding-left: 30px;
+  padding-right: 30px;
+}
+
+.wforecast__card__temp {
+  font-family: 'Share Tech Mono', monospace;
+  padding-right: 50px;
+  font-size: 32px;
+}
+
+.wforecast__card__info {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  font-size: 14px;
+}
+
+.wforecast__card__info p:first-child {
+  margin-bottom: 5px;
+}
+
+.wforecast__card__info p span:first-child {
+  color: gray;
+  font-weight: 700;
+}

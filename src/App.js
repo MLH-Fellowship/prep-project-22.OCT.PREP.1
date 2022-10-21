@@ -9,6 +9,7 @@ import Alerts from "./components/Alerts/Alerts";
 import Sunset from "./components/sunTimings/Sunset";
 import Sunrise from "./components/sunTimings/Sunrise";
 import Forecast from "./components/Forecast/Forecast";
+import WeeklyForecast from "./components/Weekly Forecast/WeeklyForecast";
 import NavBar from "./components/Navbar/Navbar";
 import ResultCard from "./components/Card/ResultCard";
 
@@ -269,6 +270,8 @@ function App() {
           <Forecast setError={setError} city={city} />
         </div>
         </div>
+
+        <WeeklyForecast city={city}/>
         <Footer />
         <Alerts city={city} />
       </div>
