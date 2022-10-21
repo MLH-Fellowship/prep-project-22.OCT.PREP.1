@@ -176,72 +176,70 @@ function App() {
 
   return (
     <>
-    <NavBar />
-    <div className={"main " + weather(weatherType)}>
-      <img className="logo" src={logo} alt="MLH Prep Logo"></img>
-      <div>
-        <div id="searchLocation">
-          <h2>Enter a city below 👇 or Click on a location in 🗺</h2>
-          <input
-            className="search-city-input"
-            list="locations"
-            type="text"
-            value={city}
-            onChange={event => {setCity(event.target.value);             
-            debouncedSuggestLocations();}}
-            pattern={suggestedLocation.join("|")}
-            autoComplete="off"
-          />
-        
-          <div className="suntimes">
-            <div className="container">
-              <Sunrise sunrise={sunrise} timezone={timezone} />
+      <NavBar />
+      <div className={"main " + weather(weatherType)}>
+        <img className="logo" src={logo} alt="MLH Prep Logo"></img>
+        <div>
+          <div id="searchLocation">
+            <h2>Enter a city below 👇 or Click on a location in 🗺</h2>
+            <input
+              className="search-city-input"
+              list="locations"
+              type="text"
+              value={city}
+              onChange={event => {
+                setCity(event.target.value);
+                debouncedSuggestLocations();
+              }}
+              pattern={suggestedLocation.join("|")}
+              autoComplete="off"
+            />
+
+            <div className="suntimes">
+              <div className="container">
+                <Sunrise sunrise={sunrise} timezone={timezone} />
+              </div>
+
+              <div className="container">
+                <Sunset sunset={sunset} timezone={timezone} />
+              </div>
             </div>
 
-            <div className="container">
-              <Sunset sunset={sunset} timezone={timezone} />
-            </div>
-          </div> 
-
-          <datalist id="locations">
-              { suggestedLocation.map((loc) => (
+            <datalist id="locations">
+              {suggestedLocation.map(loc => (
                 <option key={loc.id}>{loc.location}</option>
               ))}
-          </datalist>
+            </datalist>
 
-          <MapBox
-            coordinates={coordinates}
-            setCoordinates={setCoordinates}
-            setResults={setResults}
-            setError={setError}
-            setCity={setCity}
-          />
+            <MapBox
+              coordinates={coordinates}
+              setCoordinates={setCoordinates}
+              setResults={setResults}
+              setError={setError}
+              setCity={setCity}
+            />
+          </div>
+          <div id="displayResults">
+            <ResultCard results={results} isLoaded={isLoaded} error={error} />
+          </div>
+          <div id="explorePlaces">
+            <h2>
+              Explore places nearby to <span className="places">{city}</span>
+            </h2>
+            {isPlacesLoaded === true ? (
+              <Places coordinates={coordinates} places={places} />
+            ) : (
+              <h2>Loading nearby places!</h2>
+            )}
+          </div>
+          <div id="hourlyForecast">
+            <Forecast setError={setError} city={city} />
+          </div>
+          <Alerts city={city} />
         </div>
-        <div id ="displayResults">
-          <ResultCard 
-            results={results} 
-            isLoaded={isLoaded} 
-            error={error} 
-          />
-        </div>
-        <div id="explorePlaces">
-          <h2>
-            Explore places nearby to <span className="places">{city}</span>
-          </h2>
-          {isPlacesLoaded === true ? (
-            <Places coordinates={coordinates} places={places} />
-          ) : (
-            <h2>Loading nearby places!</h2>
-          )}
-        </div>
-        <div id="hourlyForecast">
-          <Forecast city={city} />
-        </div>
-        <Alerts city={city} />
+        <Footer />
       </div>
-      <Footer />
-    </div>
     </>
   );
-  }
+}
 export default App;
