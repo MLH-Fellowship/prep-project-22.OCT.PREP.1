@@ -76,7 +76,7 @@
   }
   
   @media (max-width: 578px) {
-    .grid-item-one {
+    .grid {
       grid-template-columns: 1fr;
     }  
   }
