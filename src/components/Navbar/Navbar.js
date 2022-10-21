@@ -4,7 +4,7 @@ import Scrollspy from 'react-scrollspy'
 const NavBar= () =>{
     return <>
 
-<div class="wrapper">
+<div className="wrapper">
     <Scrollspy
     className="links"
     items={ ['searchLocation', 'displayResults', 'explorePlaces', 'hourlyForecast'] }

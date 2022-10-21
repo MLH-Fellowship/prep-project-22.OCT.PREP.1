@@ -1,0 +1,7 @@
+.items {
+    text-align: center;
+}
+
+.items-inner-container .items-card img{
+    height: 85px;
+}

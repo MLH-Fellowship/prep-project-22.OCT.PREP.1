@@ -33,6 +33,17 @@ function App() {
   const [sunset, setSunset] = useState("");
   const [timezone, setTimezone] = useState("");
   const [weatherType, setWeatherType] = useState("");
+  const [airPollutionDetails, setAirPollutionDetails] = useState({
+    co: 0.0,
+    no: 0.0,
+    no2: 0.0,
+    o3: 0.0,
+    so2: 0.0,
+    pm2_5: 0.0,
+    pm10: 0.0,
+    nh3: 0.0
+  });
+  const [aqi, setAqi] = useState(1);    // aqi stands for air quality index
 
   const findUserLocation = position => {
     const latitude = position.coords.latitude,
@@ -118,6 +129,22 @@ function App() {
       );
   }, [city]);
 
+  useEffect(() => {
+    fetch(
+      "http://api.openweathermap.org/data/2.5/air_pollution?lat=" +
+        coordinates.lat +
+        "&lon=" +
+        coordinates.lon +
+        "&appid=" +
+        process.env.REACT_APP_APIKEY
+    )
+      .then(res => res.json())
+      .then(result => {
+        setAqi(result.list[0].main.aqi);
+        setAirPollutionDetails(result.list[0].components);
+      });
+  }, [coordinates]);
+
   const weather = weatherType => {
     switch (weatherType) {
       case "Clouds":
@@ -176,7 +203,7 @@ function App() {
 
   return (
     <>
-    <NavBar />
+     <NavBar />
     <div className={"main " + weather(weatherType)}>
       <img className="logo" src={logo} alt="MLH Prep Logo"></img>
       <div>
@@ -218,12 +245,10 @@ function App() {
           />
         </div>
         <div id ="displayResults">
-          <ResultCard 
-            results={results} 
-            isLoaded={isLoaded} 
-            error={error} 
-          />
+        <ResultCard results={results} isLoaded={isLoaded} error={error} airPollutionResults={airPollutionDetails} aqi={aqi}/>
         </div>
+      </div>
+        <div>
         <div id="explorePlaces">
           <h2>
             Explore places nearby to <span className="places">{city}</span>

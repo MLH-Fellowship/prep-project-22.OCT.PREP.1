@@ -13,6 +13,8 @@ import SunGlasses from "../../assets/img/sunglasses.png";
 import Goggles from "../../assets/img/goggles.png";
 import RainCoat from "../../assets/img/raincoat.png";
 
+import "./ItemsNeeded.css";
+
 const ItemsNeeded = ({ weatherKind }) => {
   const getCarryItems = x => {
     if (x === "Rain") return [RainCoat, Umbrella, WaterProofBoots];
@@ -34,7 +36,7 @@ const ItemsNeeded = ({ weatherKind }) => {
   };
 
   return (
-    <div className="items-outer-container">
+    <div className="items container">
       <h3>Carry the below items!</h3>
       <div className="items-inner-container">
         {getCarryItems(weatherKind) === undefined ? (

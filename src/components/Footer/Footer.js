@@ -7,11 +7,11 @@ const Footer = () => {
             <footer className="footer">
                 <div className="row">
                     <div className="col-l">
-                        <p class="footer-company-about">
-                            <span>
+                    <span>
                             <h1>Web Whales Members</h1>
                             </span>
-                            <table>
+                        <p class="footer-company-about">
+                            <table><tbody>
                             <tr>
                                 <td className="columnSpace">Akanksha Kushwaha</td>
                                 <td className="columnSpace" >Bhavneet Kaur</td>
@@ -43,7 +43,7 @@ const Footer = () => {
                             <tr>
                                 <td className="columnSpace">Swatishree Mahapatra</td>
                             </tr>
-                            </table>
+                            </tbody></table>
                         </p>
                     </div>
                     <div className="col-r">
