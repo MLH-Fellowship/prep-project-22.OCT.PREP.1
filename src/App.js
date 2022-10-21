@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import "./App.css";
 import logo from "./mlh-prep.png";
 
-import ItemsNeeded from "./components/CarryItems/ItemsNeeded";
 import MapBox from "./components/Map/MapBox";
 import Places from "./components/Places/Places";
 import Footer from "./components/Footer/Footer";
