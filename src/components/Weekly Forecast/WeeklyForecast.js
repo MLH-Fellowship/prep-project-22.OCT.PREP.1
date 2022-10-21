@@ -8,9 +8,7 @@ export default function WeeklyForecast({ city }) {
   const [apierror, setApierror] = useState(true);
 
   useEffect(() => {
-    fetch(
-      `http://api.weatherapi.com/v1/forecast.json?key=${process.env.REACT_APP_WEEKLYFORECASTAPIKEY}&q=${city}&days=7&aqi=yes&alerts=yes`
-    )
+    fetch("https://api.weatherapi.com/v1/forecast.json?key="+process.env.REACT_APP_WEEKLYFORECASTAPIKEY+"&q="+city+"&days=7&aqi=yes&alerts=yes")
       .then((res) => {
         if (res.status == 400 || res.status == 401 || res.status == 403) {
           setApierror(false);
